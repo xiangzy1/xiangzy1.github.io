@@ -16,12 +16,12 @@
 <meta property="og:site_name" content="我">
 <meta property="og:description" content="今年去了新公司主要负责的业务是小程序之前的代码使用es5写的充斥这大量的异步函数嵌套还有很多的var that = this…于是乎想慢慢的都改成es6先从自己负责的部分开始把">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://xiangzy.me/imgs/mp-es6-promise.png">
-<meta property="og:updated_time" content="2018-04-28T04:58:13.092Z">
+<meta property="og:image" content="https://xiangzy.me/img/mp-es6-promise.png">
+<meta property="og:updated_time" content="2019-11-13T11:49:21.085Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在小程序中使用Promise">
 <meta name="twitter:description" content="今年去了新公司主要负责的业务是小程序之前的代码使用es5写的充斥这大量的异步函数嵌套还有很多的var that = this…于是乎想慢慢的都改成es6先从自己负责的部分开始把">
-<meta name="twitter:image" content="https://xiangzy.me/imgs/mp-es6-promise.png">
+<meta name="twitter:image" content="https://xiangzy.me/img/mp-es6-promise.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -48,7 +48,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/imgs/avatar.png" class="js-avatar">
+			<img src="/img/avatar.png" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">向.</a></h1>
@@ -96,7 +96,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/imgs/avatar.png" class="js-avatar">
+				<img src="/img/avatar.png" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">向.</h1>
@@ -157,11 +157,12 @@
       
         <p>今年去了新公司<br>主要负责的业务是小程序<br>之前的代码使用es5写的<br>充斥这大量的异步函数嵌套<br>还有很多的<code>var that = this</code>…<br>于是乎<br>想慢慢的都改成es6<br>先从自己负责的部分开始把<br><a id="more"></a></p>
 <h2 id="小程序"><a href="#小程序" class="headerlink" title="小程序"></a>小程序</h2><p>总的来说，小程序要比写移动端的页面要简单<br>小程序为我们做了很多的封装，提供了自动补全，代码压缩之类的功能<br>省去了很多麻烦</p>
-<p>想用es6，自然得考虑兼容性是否可以接收<br>小程序文档<br><img src="/imgs/mp-es6-promise.png" alt="promise"><br>看来还好</p>
+<p>想用es6，自然得考虑兼容性是否可以接收<br>小程序文档<br><img src="/img/mp-es6-promise.png" alt="promise"><br>看来还好</p>
 <h2 id="小程序异步方法"><a href="#小程序异步方法" class="headerlink" title="小程序异步方法"></a>小程序异步方法</h2><p>小程序的异步方法的格式其实都差不多<br>例如<code>wx.request</code></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">wx.request(&#123;</span><br><span class="line">  url: <span class="string">'test.php'</span>, <span class="comment">//仅为示例，并非真实的接口地址</span></span><br><span class="line">  data: &#123;</span><br><span class="line">     x: <span class="string">''</span> ,</span><br><span class="line">     y: <span class="string">''</span></span><br><span class="line">  &#125;,</span><br><span class="line">  header: &#123;</span><br><span class="line">      <span class="string">'content-type'</span>: <span class="string">'application/json'</span> <span class="comment">// 默认值</span></span><br><span class="line">  &#125;,</span><br><span class="line">  success: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res.data)</span><br><span class="line">  &#125;,</span><br><span class="line">  fail: <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>基本上小程序的异步方法都有两个参数，<code>success</code>、<code>fail</code>对应成功和失败的处理函数，既然格式统一，那就好解决了</p>
 <h2 id="小程序异步方法Promise化"><a href="#小程序异步方法Promise化" class="headerlink" title="小程序异步方法Promise化"></a>小程序异步方法Promise化</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">wxPromisify</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 返回一个返回Promise的函数</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">obj = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 返回Promise对象</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      obj.success = <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">        resolve(res)</span><br><span class="line">      &#125;</span><br><span class="line">      obj.fail = <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">        reject(res)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 传入小程序异步方法的参数，默认设置success、fail方法</span></span><br><span class="line">      fn(obj)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">request = wxPromisify(wx.request)</span><br><span class="line"><span class="comment">// 就可以这样使用微信的异步方法了，使用箭头函数，也不用每次在回调里去使用外层that来保存this了</span></span><br><span class="line">request(&#123;<span class="attr">url</span>: <span class="string">'test.php'</span>, <span class="attr">data</span>: &#123;<span class="attr">x</span>: <span class="number">1</span>&#125;&#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res)</span><br><span class="line">&#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(err)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
       
 
       
