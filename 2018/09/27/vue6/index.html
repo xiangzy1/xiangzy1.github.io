@@ -5,14 +5,14 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="https://xiangzy.me">
+  <link rel="dns-prefetch" href="https://www.xiangzy.top/blog">
   <title>Vue源码学习笔记（六）nextTick | 我</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="JS执行时单线程的，是基于事件循环的 所有同步任务在主线程上执行，行程一个执行栈 主线程之外，还存在一个 任务队列 。只要异步任务有了运行结果，就在 任务队列 中放置一个事件。 一旦执行栈中的所有同步任务执行完毕，系统就会读取任务队列，看有哪些事件，对应哪些异步任务，结束等待状态，进入执行栈，开始执行 主线程不断重复上面三步">
 <meta name="keywords" content="vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue源码学习笔记（六）nextTick">
-<meta property="og:url" content="https://xiangzy.me/2018/09/27/vue6/index.html">
+<meta property="og:url" content="https://www.xiangzy.top/blog/2018/09/27/vue6/index.html">
 <meta property="og:site_name" content="我">
 <meta property="og:description" content="JS执行时单线程的，是基于事件循环的 所有同步任务在主线程上执行，行程一个执行栈 主线程之外，还存在一个 任务队列 。只要异步任务有了运行结果，就在 任务队列 中放置一个事件。 一旦执行栈中的所有同步任务执行完毕，系统就会读取任务队列，看有哪些事件，对应哪些异步任务，结束等待状态，进入执行栈，开始执行 主线程不断重复上面三步">
 <meta property="og:locale" content="zh-Hans">
@@ -250,7 +250,7 @@
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "https://xiangzy.me/blog/2018/09/27/vue6/",
+  id: "https://www.xiangzy.top/blog/blog/2018/09/27/vue6/",
   owner: 'xzylzz',
   repo: 'xzylzz.github.io',
   oauth: {
