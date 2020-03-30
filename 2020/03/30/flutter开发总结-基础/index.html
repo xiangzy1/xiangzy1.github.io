@@ -6,23 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://www.xiangzy.top/blog">
-  <title>CSS世界读书笔记（二） 盒尺寸 | 我</title>
+  <title>flutter开发总结-基础 | 我</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="content box什么是替换元素通过修改某个属性值呈现的内容就可以被替换的元素成为替换元素 如&amp;lt;img&amp;gt;&amp;lt;object&amp;gt;&amp;lt;video&amp;gt;&amp;lt;iframe&amp;gt;&amp;lt;textarea&amp;gt;&amp;lt;input&amp;gt;  内容的外观不受页面的css影响 有自己的尺寸 在CSS属性上有自己的一套表现规则">
-<meta name="keywords" content="CSS,2018">
+  <meta name="description" content="使用flutter到现在也有一年多的时间了，从边学边做开始从开发到维护了一个app项目一年。开始对这一年做一些总结，也在这个过程中发现现有项目的不足。">
+<meta name="keywords" content="flutter">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSS世界读书笔记（二） 盒尺寸">
-<meta property="og:url" content="https://www.xiangzy.top/blog/2018/09/21/CSS世界2/index.html">
+<meta property="og:title" content="flutter开发总结-基础">
+<meta property="og:url" content="https://www.xiangzy.top/blog/2020/03/30/flutter开发总结-基础/index.html">
 <meta property="og:site_name" content="我">
-<meta property="og:description" content="content box什么是替换元素通过修改某个属性值呈现的内容就可以被替换的元素成为替换元素 如&amp;lt;img&amp;gt;&amp;lt;object&amp;gt;&amp;lt;video&amp;gt;&amp;lt;iframe&amp;gt;&amp;lt;textarea&amp;gt;&amp;lt;input&amp;gt;  内容的外观不受页面的css影响 有自己的尺寸 在CSS属性上有自己的一套表现规则">
+<meta property="og:description" content="使用flutter到现在也有一年多的时间了，从边学边做开始从开发到维护了一个app项目一年。开始对这一年做一些总结，也在这个过程中发现现有项目的不足。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://ws4.sinaimg.cn/large/0069RVTdly1fuaf2ufqxdj30fn03wglt.jpg">
-<meta property="og:image" content="https://ws2.sinaimg.cn/large/0069RVTdly1fuaf3swaewj30h302d0so.jpg">
-<meta property="og:updated_time" content="2019-09-05T02:14:11.590Z">
+<meta property="og:updated_time" content="2020-03-30T12:36:22.634Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSS世界读书笔记（二） 盒尺寸">
-<meta name="twitter:description" content="content box什么是替换元素通过修改某个属性值呈现的内容就可以被替换的元素成为替换元素 如&amp;lt;img&amp;gt;&amp;lt;object&amp;gt;&amp;lt;video&amp;gt;&amp;lt;iframe&amp;gt;&amp;lt;textarea&amp;gt;&amp;lt;input&amp;gt;  内容的外观不受页面的css影响 有自己的尺寸 在CSS属性上有自己的一套表现规则">
-<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/0069RVTdly1fuaf2ufqxdj30fn03wglt.jpg">
+<meta name="twitter:title" content="flutter开发总结-基础">
+<meta name="twitter:description" content="使用flutter到现在也有一年多的时间了，从边学边做开始从开发到维护了一个app项目一年。开始对这一年做一些总结，也在这个过程中发现现有项目的不足。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -136,151 +133,99 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-CSS世界2" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-flutter开发总结-基础" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      CSS世界读书笔记（二） 盒尺寸
+      flutter开发总结-基础
     </h1>
   
 
         
-        <a href="/blog/2018/09/21/CSS世界2/" class="archive-article-date">
-  	<time datetime="2018-09-21T02:22:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-21</time>
+        <a href="/blog/2020/03/30/flutter开发总结-基础/" class="archive-article-date">
+  	<time datetime="2020-03-30T12:34:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="content-box"><a href="#content-box" class="headerlink" title="content box"></a>content box</h3><h4 id="什么是替换元素"><a href="#什么是替换元素" class="headerlink" title="什么是替换元素"></a>什么是替换元素</h4><p>通过修改某个属性值呈现的内容就可以被替换的元素成为替换元素</p>
-<p>如<code>&lt;img&gt;&lt;object&gt;&lt;video&gt;&lt;iframe&gt;&lt;textarea&gt;&lt;input&gt;</code></p>
-<ul>
-<li>内容的外观不受页面的css影响</li>
-<li>有自己的尺寸</li>
-<li>在CSS属性上有自己的一套表现规则</li>
-</ul>
+        <p>使用flutter到现在也有一年多的时间了，从边学边做开始从开发到维护了一个app项目一年。开始对这一年做一些总结，也在这个过程中发现现有项目的不足。</p>
 <a id="more"></a>
-<h4 id="替换元素的默认display值"><a href="#替换元素的默认display值" class="headerlink" title="替换元素的默认display值"></a>替换元素的默认display值</h4><p>都是内联水平元素</p>
-<h4 id="替换元素的尺寸计算规则"><a href="#替换元素的尺寸计算规则" class="headerlink" title="替换元素的尺寸计算规则"></a>替换元素的尺寸计算规则</h4><ol>
-<li><p>固有尺寸</p>
-<p>替换内容原本的尺寸。如图片视频作为独立文件本身就有尺寸</p>
-</li>
-<li><p>HTML尺寸</p>
-<p>HTML尺寸只能通过HTML原生属性改变，如<code>width height size col row</code></p>
-</li>
-<li><p>CSS尺寸</p>
-<p>可以通过CSS的宽高设置的尺寸</p>
-</li>
-</ol>
-<p>如果没有CSS尺寸和HTML尺寸，使用固定尺寸作为最终的宽高</p>
-<p>如果没有CSS，使用HTML尺寸</p>
-<p>如果有CSS，使用CSS属性决定</p>
-<p>如果固有尺寸含有宽高比例，如果同时仅设置了宽度或高度，元素依然按照固定的宽高比显示</p>
-<p>如果条件都不符合，最终表现为宽300px高150px</p>
-<p>内联替换元素和块级替换元素使用上面同一套尺寸计算规则，所以图片设置<code>display: block</code>跨度也没变成100%</p>
-<h4 id="object-fill"><a href="#object-fill" class="headerlink" title="object-fill"></a>object-fill</h4><p>图片中的content替换内容默认适配方式是fill，所以设置图片的宽高在content box可以改变图片显示大小。</p>
-<p>在css3中，<code>&lt;img&gt;</code>和其他一些替换元素的替换内容的适配方式可以通过<code>object-fit</code>属性修改，默认fill，如果设置<code>object-fill:none</code>，则图片尺寸就完全不受控制了</p>
-<p>设置<code>object-fit: contain</code>，图片会保持比例图片，尽可能利用HTML尺寸但又不会超出的方式显示</p>
-<h4 id="content与替换元素"><a href="#content与替换元素" class="headerlink" title="content与替换元素"></a>content与替换元素</h4><p>替换元素和非替换元素就差个src或content</p>
-<p>content属性生成的对象称为 匿名替换元素</p>
-<p>content属性生成的内容<strong>都是替换元素</strong></p>
-<ul>
-<li>使用content生成的文本是无法选中、复制、被屏幕阅读设备读取、被搜索引擎抓取</li>
-<li>content动态生成的值无法获取</li>
-</ul>
-<h4 id="content内容生成技术"><a href="#content内容生成技术" class="headerlink" title="content内容生成技术"></a>content内容生成技术</h4><h5 id="辅助元素生成"><a href="#辅助元素生成" class="headerlink" title="辅助元素生成"></a>辅助元素生成</h5><p>核心在伪元素本身，通常content设置为空字符串。</p>
-<p>使HTML代码更简洁</p>
-<h6 id="清除浮动带来的影响"><a href="#清除浮动带来的影响" class="headerlink" title="清除浮动带来的影响"></a>清除浮动带来的影响</h6><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clear</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">  <span class="attribute">display</span>: table/block;</span><br><span class="line">  <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h6 id="content字符内容生成"><a href="#content字符内容生成" class="headerlink" title="content字符内容生成"></a>content字符内容生成</h6><p>配合<code>@font-face</code>实现图标字体效果</p>
-<p>插入<code>Unicode</code>字符实现某些布局</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">'\A'</span>; <span class="comment">/* 换行符中的LF字符 Unicode编码是000A */</span></span><br><span class="line">  <span class="attribute">white-space</span>: pre;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>CR <code>\D</code> - 回车 LF <code>\A</code>- 换行</p>
-<h6 id="content图片生成"><a href="#content图片生成" class="headerlink" title="content图片生成"></a>content图片生成</h6><p>直接用url功能符显示图片</p>
-<h6 id="content开启闭合符号生成"><a href="#content开启闭合符号生成" class="headerlink" title="content开启闭合符号生成"></a>content开启闭合符号生成</h6><p>content支持的属性有一对不常用的<code>open-quote</code>和<code>close-quote</code>关键字，开启的引号和闭合引号</p>
-<h6 id="content-attr属性值内容生成"><a href="#content-attr属性值内容生成" class="headerlink" title="content attr属性值内容生成"></a>content attr属性值内容生成</h6><h6 id="content计数器"><a href="#content计数器" class="headerlink" title="content计数器"></a>content计数器</h6><p>1.<code>counter-reset</code> 计数器重置，给计数器起个名字，顺便告诉从哪个数开始计数</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 计数器名称xxx 起始值2 */</span></span><br><span class="line"><span class="selector-class">.counter</span> &#123; <span class="attribute">counter-reset</span>: xxx <span class="number">2</span>;&#125;</span><br><span class="line"><span class="selector-class">.counter</span><span class="selector-pseudo">::before</span> &#123; <span class="attribute">content</span>: <span class="built_in">counter</span>(xxx); &#125;</span><br><span class="line"><span class="comment">/* 也可以多个同时命名 */</span></span><br><span class="line"><span class="selector-class">.c2</span> &#123; <span class="attribute">counter-reset</span>: xxx <span class="number">2</span> xxx2 <span class="number">3</span>;&#125;</span><br></pre></td></tr></table></figure>
-<p>2.<code>counter-increment</code> 计数器递增，值为<code>counter-reset</code>的1个或多个关键字，后面可以跟数字，表示每次计数的变化值</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.xxx</span> &#123; <span class="attribute">counter-increment</span>: counter <span class="number">2</span> xxx <span class="number">3</span> &#125; 增加2 和 3</span><br></pre></td></tr></table></figure>
-<p>3.<code>counter()/counters()</code>方法</p>
-<p>类似css3的<code>calc()</code></p>
-<p>作用是显示计数 <code>counter(name, style)</code></p>
-<p><code>style</code>支持<code>list-style-type</code>的那些值，可以使用罗马数字表示</p>
-<p><code>counters(name, string)</code></p>
-<p>string表示子序号的连接字符串，如1.1的string就是<code>.</code>，1-1就是<code>-</code></p>
-<h6 id="content内容生成的混合特性"><a href="#content内容生成的混合特性" class="headerlink" title="content内容生成的混合特性"></a>content内容生成的混合特性</h6><p>content内容生成语法可以混合在一起使用</p>
-<h2 id="padding"><a href="#padding" class="headerlink" title="padding"></a>padding</h2><h3 id="padding与元素的尺寸"><a href="#padding与元素的尺寸" class="headerlink" title="padding与元素的尺寸"></a>padding与元素的尺寸</h3><p>CSS中默认的<code>box-sizing</code>是<code>content-box</code>，所以使用<code>padding</code>会增加元素的尺寸</p>
-<blockquote>
-<p>误区：设置了<code>box-sizing: border-box</code>，元素的尺寸就不会变化。大多数情况下是对的，但是padding足够大的时候，如<code>width: 80px;padding: 20px 60px;box-sizing: border-box;</code>，此时宽度为120px（块状特性的元素）</p>
-</blockquote>
-<h4 id="内联元素的padding"><a href="#内联元素的padding" class="headerlink" title="内联元素的padding"></a>内联元素的padding</h4><p>错误认识：内联元素的<code>padding</code>只会影响水平方向，不会影响垂直方向</p>
-<p>内联元素的<code>padding</code>在垂直方向同样会影响布局。只是因为内联元素没有可视宽度和可视高度的说法（<code>clientHeight</code>和<code>clientWidth</code>永远是0），垂直方向的行为完全受<code>line-height</code>和<code>verticle-align</code>的影响，视觉上并没有改变，因此给我们的感觉是垂直<code>padding</code>没有起作用</p>
-<p>如果我们给内联元素加个背景色或者边框，可以看到尺寸空间受到了<code>padding</code>的影响</p>
-<p>尺寸虽然有效，但是对上下元素的原本布局却没有任何影响</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(0, 0, 0, 0.2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://ws4.sinaimg.cn/large/0069RVTdly1fuaf2ufqxdj30fn03wglt.jpg" alt="img"></p>
-<p><img src="https://ws2.sinaimg.cn/large/0069RVTdly1fuaf3swaewj30h302d0so.jpg" alt="img"></p>
-<p>CSS中还有很多这种不影响其他元素布局而是出现层叠效果的现象。如<code>relative</code>的定位，<code>box-shadow</code>、<code>outline</code>等</p>
-<p><code>box-shadoe</code> <code>outline</code>是不影响尺寸的，而内联的<code>padding</code>影响尺寸，如果父元素设置<code>overflow: auto</code>，超出父元素高度会出现滚动条</p>
-<h5 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h5><p>1.可以在不影响布局的情况下，增加链接或按钮点击区域的大小</p>
-<p>2.使用内联元素的<code>padding</code>实现高度可控的分隔线</p>
-<p>3.使用锚点定位时，定位元素离页面顶部多一点距离，可使用内联元素的padding，不影响布局</p>
-<h3 id="padding的百分比值"><a href="#padding的百分比值" class="headerlink" title="padding的百分比值"></a>padding的百分比值</h3><p>块状元素</p>
-<p>1.和<code>margin</code>不同，不支付负值</p>
-<p>2.<code>padding</code>百分比值无论水平还是垂直方向都是相对于宽度计算的</p>
-<p>内联元素</p>
-<p>同样相对于宽度、默认高度和宽度细节有差异、padding会断行</p>
-<h4 id="padding应用"><a href="#padding应用" class="headerlink" title="padding应用"></a>padding应用</h4><p>宽高比例不变的盒子，实现整屏幕图片的显示</p>
-<p><code>padding: 10% 50%</code> 1:5 高宽的盒子</p>
-<h3 id="标签元素内置的padding"><a href="#标签元素内置的padding" class="headerlink" title="标签元素内置的padding"></a>标签元素内置的padding</h3><p>1.ol/ul列表内置<code>padding-left</code></p>
-<p>2.很多表单元素都内置<code>padding</code></p>
-<h3 id="padding与图形绘制"><a href="#padding与图形绘制" class="headerlink" title="padding与图形绘制"></a>padding与图形绘制</h3><p><code>padding</code>属性和<code>background-clip</code>属性配合</p>
-<p>1.不使用伪元素，一层标签实现三道杠分类图标效果</p>
-<p>2.不实用伪元素，一层标签实现双层圆点效果</p>
-<h2 id="margin"><a href="#margin" class="headerlink" title="margin"></a>margin</h2><h3 id="margin与元素尺寸和布局"><a href="#margin与元素尺寸和布局" class="headerlink" title="margin与元素尺寸和布局"></a>margin与元素尺寸和布局</h3><blockquote>
-<p>元素尺寸：元素的border-box尺寸 (offsetWidth)</p>
-<p>元素内部尺寸：包括padding但不包括border (clientWidth)</p>
-<p>元素外部尺寸：包括margin</p>
-</blockquote>
-<h4 id="margin与元素的内部尺寸"><a href="#margin与元素的内部尺寸" class="headerlink" title="margin与元素的内部尺寸"></a>margin与元素的内部尺寸</h4><p>元素设置了<code>width</code>值，或保持 包裹性 的时候，<code>margin</code>对尺寸没有影响，只有元素是『充分利用可用空间』状态的时候，margin才可以改变元素的可视尺寸</p>
-<p>CSS默认流方向是水平的，因此，对于普通流体元素，<code>margin</code>只能改变元素的水平方向尺寸</p>
-<p>例：两端对齐效果</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* ul右侧可用空间增加的20px，li的右侧可以紧贴着父容器 */</span></span><br><span class="line"><span class="selector-tag">ul</span> &#123; <span class="attribute">margin-right</span>: -<span class="number">20px</span> &#125;</span><br><span class="line"><span class="selector-tag">ul</span> &gt; <span class="selector-tag">li</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">margin-right</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="margin与元素的外部尺寸"><a href="#margin与元素的外部尺寸" class="headerlink" title="margin与元素的外部尺寸"></a>margin与元素的外部尺寸</h4><p>对于普通块状元素，在默认水平流下，<code>margin</code>只能改变左右方向的内部尺寸，垂直方向无法改变。</p>
-<blockquote>
-<p>只能使用子元素的<code>margin-bottom</code>来实现滚动容器的底部留白</p>
-</blockquote>
-<h4 id="margin的百分比值"><a href="#margin的百分比值" class="headerlink" title="margin的百分比值"></a>margin的百分比值</h4><p>都是相对于<strong>宽度</strong>计算</p>
-<h4 id="margin合并"><a href="#margin合并" class="headerlink" title="margin合并"></a>margin合并</h4><p>块级元素的上外边距<code>margin-top</code>与下边距<code>margin-bottom</code>有时会合并为单个外边距</p>
-<p>1.块级元素，不包括浮动和绝对定位元素，尽管浮动和绝对定位可以让元素块状化</p>
-<p>2.只发生在垂直方向（当前文档流方向的垂直方向）</p>
-<h4 id="margin-auto"><a href="#margin-auto" class="headerlink" title="margin: auto"></a>margin: auto</h4><p>填充闲置空间</p>
-<p>1.如果一侧定值，一侧auto，则auto为剩余空间大小</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.father</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.son</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">margin-right</span>: <span class="number">80px</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>: auto; <span class="comment">/* 300-200-80 20px */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果不设置<code>margin-right</code>则为0，效果就是块级元素右对齐</p>
-<p>2.如果两侧均是auto，则平分剩余空间</p>
-<p>触发<code>margin: auto</code>计算有一个前提：<code>width</code>或<code>height</code>是<code>auto</code>的时候，元素是具有对应方向的自动填充特性的，所以有时子元素设置高度再<code>margin: auto</code>并不会垂直居中</p>
-<h5 id="使用margin垂直居中"><a href="#使用margin垂直居中" class="headerlink" title="使用margin垂直居中"></a>使用margin垂直居中</h5><p>1.使用<code>writing-mode</code>改变文档流方向</p>
-<p>2.绝对定位元素的<code>margin: auto</code>垂直水平居中，将上下左右都设置为0</p>
-<h4 id="margin无效情形"><a href="#margin无效情形" class="headerlink" title="margin无效情形"></a>margin无效情形</h4><p>1.<code>display: inline</code>的非替换元素的垂直margin是无效的，替换元素margin有效，但是没有合并</p>
-<p>2.表格中<code>&lt;tr&gt;&lt;td&gt;</code>元素或设置<code>display: table-cell/table-row</code>的元素margin无效</p>
-<p>3.margin合并的时候，更改可能没有效果</p>
-<p>4.绝对定位元素非定位方位的margin无效，如没有设置right、bottom，这两个方向上的margin无效</p>
-<p>5.定高容器的子元素的<code>margin-bottom</code>或者宽度定死的子元素的<code>margin-right</code>的定位失效</p>
-<p>想使用margin属性改变自身的位置，必须和当前元素定位方向一样的margin属性才可以，例如普通元素在普通流下，定位方向是左侧以及上方，此时只有<code>marign-left margin-top</code>可以影响元素的定位。如果通过属性改变了定位方向，如<code>float: right</code>或绝对定位的right，则<code>margin-right</code>才可以影响定位</p>
-<p>6.内联特性导致的margin无效</p>
-<h2 id="border"><a href="#border" class="headerlink" title="border"></a>border</h2><p>border-style: none solid dashed dotted</p>
-<p>double双线边框</p>
-<p>border颜色不设置是元素<code>color</code>属性</p>
-<h3 id="border与透明边框技巧"><a href="#border与透明边框技巧" class="headerlink" title="border与透明边框技巧"></a>border与透明边框技巧</h3><p>1.右下方background定位</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">border-right</span>: <span class="number">50px</span> solid transparent;</span><br><span class="line">  <span class="attribute">background-position</span>: <span class="number">100%</span> <span class="number">50%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2.增加点击区域大小</p>
-<p>3.三角形的绘制</p>
-<p>4.等高布局</p>
-<p>一侧的布局移动到父元素的宽边框上，不能使用<code>overflow: hidden</code></p>
+<h2 id="Dart"><a href="#Dart" class="headerlink" title="Dart"></a>Dart</h2><p>flutter使用Dart语言进行开发，Dart对于前端开发来说还是很好上手的，与JS有不少相似之处。</p>
+<h3 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h3><p>Dart属于强类型语言，但是可以使用<code>var</code>来声明变量，Dart会推导出数据类型，但我习惯确定类型的话就还是主动声明类型，这样也可以在静态检查中提前发现问题，发挥出强类型的优势。</p>
+<p>Dart同时也算半个动态类型语言，支持闭包；<code>dynamic</code>表示动态类型，被编译后实际是一个<code>object</code>类型，在编译期不进行类型检查，而是在运行期进行类型检查。</p>
+<p>number类型分为<code>int</code>和<code>double</code>。</p>
+<p>只有bool类型可用于<code>if</code>判断，不同于JS。</p>
+<p>string类型.. 没什么好说的</p>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>Dart可以使用<code>var</code>声明变量。使用<code>final</code>和<code>const</code>声明一个常量，<code>const</code>的值在编译期就确定，而<code>final</code>的值要在运行时才能确定。</p>
+<h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><p>Dart中没有<code>public</code>、<code>private</code>等修饰符，<code>_</code>开头命名的变量代表<code>private</code>。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    <span class="built_in">String</span> name;</span><br><span class="line">    <span class="built_in">String</span> tag;</span><br><span class="line"></span><br><span class="line">    A(<span class="keyword">this</span>.name, <span class="keyword">this</span>.tag);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 多构造函数</span></span><br><span class="line">    A.empty();</span><br><span class="line"></span><br><span class="line">    A.fromName(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h3><p>这部分和JS十分相像了。</p>
+<p><code>Future</code>对象，和<code>Promise</code>的用法基本一致，通过<code>.then</code>链式调用。</p>
+<p><code>async/await</code>是语法糖，最终还是编译为<code>Future</code>对象，之后通过<code>.then</code>进行下一步。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Future request() <span class="keyword">async</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> http.<span class="keyword">get</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'ok'</span>;</span><br><span class="line">&#125;</span><br><span class="line">request.then(...)</span><br><span class="line"><span class="keyword">await</span> request() ...</span><br></pre></td></tr></table></figure>
+<h2 id="Flutter"><a href="#Flutter" class="headerlink" title="Flutter"></a>Flutter</h2><p>在flutter中一切都是<code>Widget</code>，<code>Widget</code>是一切的基础，利用响应式进行渲染。</p>
+<p>Widget分为有状态和无状态一种，有状态会比无状态多一个<code>State</code>对象，用于刷新界面时数据的保存。</p>
+<h3 id="StatelessWidget"><a href="#StatelessWidget" class="headerlink" title="StatelessWidget"></a>StatelessWidget</h3><p>实现一个<code>StatelessWidget</code>很简单，继承<code>StatelessWidget</code>，重写<code>build</code>方法返回自己的布局。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestWidget</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="built_in">String</span> str;</span><br><span class="line">    TestWidget(<span class="keyword">this</span>.str);</span><br><span class="line">    <span class="meta">@override</span></span><br><span class="line">    Widget build(BuildContext context) &#123;</span><br><span class="line">        <span class="keyword">return</span> Container();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>StatelessWidget</code>中的变量必须是<code>final</code>的，不然会有一个警告，<code>StatelessWidget</code>不会保存状态，所以在其中放置一个变量也是没有意义的。</p>
+<h3 id="StatefulWidget"><a href="#StatefulWidget" class="headerlink" title="StatefulWidget"></a>StatefulWidget</h3><p><code>StatefulWidget</code>需要创建管理的是主要是 <code>State</code></p>
+<p>在<code>State</code>中有<code>initState</code>、<code>dispose</code>等声明周期方法。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestWidget</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  TestWidget(&#123;Key key&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建一个State</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _TestWidgetState createState() =&gt; _TestWidgetState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_TestWidgetState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">TestWidget</span>&gt; </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> initState() &#123;</span><br><span class="line">    <span class="comment">// 初始化、只会执行一次</span></span><br><span class="line">    <span class="keyword">super</span>.initState();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> dispose() &#123;</span><br><span class="line">    <span class="comment">// 销毁时</span></span><br><span class="line">    <span class="keyword">super</span>.dispose();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Container(</span><br><span class="line">       child: child,</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="自带Widget"><a href="#自带Widget" class="headerlink" title="自带Widget"></a>自带Widget</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>作用特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MaterialApp</td>
+<td>一般作为APP顶层的主页入口，可配置主题，多语言，路由等</td>
+</tr>
+<tr>
+<td>Scaffold</td>
+<td>一般用户页面的承载Widget，包含appbar、snackbar、drawer等material design的设定。</td>
+</tr>
+<tr>
+<td>Appbar</td>
+<td>一般用于Scaffold的appbar ，内有标题，二级页面返回按键等，当然不止这些，tabbar等也会需要它 。</td>
+</tr>
+<tr>
+<td>Text</td>
+<td>显示文本，几乎都会用到，主要是通过style设置TextStyle来设置字体样式等。</td>
+</tr>
+<tr>
+<td>RichText</td>
+<td>富文本，通过设置<code>TextSpan</code>，可以拼接出富文本场景。</td>
+</tr>
+<tr>
+<td>TextField</td>
+<td>文本输入框 ：<code>new TextField(controller: //文本控制器, obscureText: &quot;hint文本&quot;);</code></td>
+</tr>
+<tr>
+<td>Image</td>
+<td>图片加载: <code>new FadeInImage.assetNetwork( placeholder: &quot;预览图&quot;, fit: BoxFit.fitWidth, image: &quot;url&quot;);</code></td>
+</tr>
+<tr>
+<td>FlatButton</td>
+<td>按键点击: <code>new FlatButton(onPressed: () {},child: new Container());</code></td>
+</tr>
+<tr>
+<td>Row</td>
+<td>Row(children: []) 横向排列布局，相当于横向的Flex</td>
+</tr>
+<tr>
+<td>Column</td>
+<td>Column(children: []) 纵向排列布局，相当于纵向的Flex</td>
+</tr>
+</tbody>
+</table>
 
       
 
@@ -294,11 +239,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">2018</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">flutter</a>
         		</li>
       		
 		</ul>
@@ -317,18 +258,9 @@
   
 <nav id="article-nav">
   
-    <a href="/blog/2018/09/21/vue4/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Vue源码学习笔记（四）响应式原理
-        
-      </div>
-    </a>
   
-  
-    <a href="/blog/2018/08/17/CSS世界1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">CSS世界读书笔记（一）盒子</div>
+    <a href="/blog/2019/09/10/从输入URL到页面展示的故事（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">从输入URL到页面展示的故事（二）网络</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -367,7 +299,7 @@
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "https://www.xiangzy.top/blog/blog/2018/09/21/CSS世界2/",
+  id: "https://www.xiangzy.top/blog/blog/2020/03/30/flutter开发总结-基础/",
   owner: 'xzylzz',
   repo: 'xzylzz.github.io',
   oauth: {
