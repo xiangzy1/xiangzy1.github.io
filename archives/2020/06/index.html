@@ -6,20 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xzylzz.github.io">
-  <title>量级 | 我</title>
+  <title>Archives: 2020/6 | 我</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在上一篇关于复杂度的文章中我们说到总复杂度等于量级最大的那段代码的复杂度。在工程中，针对小规模问题的解决方法对大问题常常不适用，例如对几十个数字排序，可能要做一千到几千次的操作，看似差别不大，但是到了上万个数字排序时，那么就是几百万和几亿的巨大差别了，我们会说这两种方法有量级上的差别。量级是优秀工程师首先关注的。那么什么是量级呢？">
-<meta name="keywords" content="算法">
-<meta property="og:type" content="article">
-<meta property="og:title" content="量级">
-<meta property="og:url" content="https://xzylzz.github.io/2019/08/22/量级/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="我">
+<meta property="og:url" content="https://xzylzz.github.io/archives/2020/06/index.html">
 <meta property="og:site_name" content="我">
-<meta property="og:description" content="在上一篇关于复杂度的文章中我们说到总复杂度等于量级最大的那段代码的复杂度。在工程中，针对小规模问题的解决方法对大问题常常不适用，例如对几十个数字排序，可能要做一千到几千次的操作，看似差别不大，但是到了上万个数字排序时，那么就是几百万和几亿的巨大差别了，我们会说这两种方法有量级上的差别。量级是优秀工程师首先关注的。那么什么是量级呢？">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-22T04:00:31.948Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="量级">
-<meta name="twitter:description" content="在上一篇关于复杂度的文章中我们说到总复杂度等于量级最大的那段代码的复杂度。在工程中，针对小规模问题的解决方法对大问题常常不适用，例如对几十个数字排序，可能要做一千到几千次的操作，看似差别不大，但是到了上万个数字排序时，那么就是几百万和几亿的巨大差别了，我们会说这两种方法有量级上的差别。量级是优秀工程师首先关注的。那么什么是量级呢？">
+<meta name="twitter:title" content="我">
   
   
     <link rel="icon" href="/favicon.png">
@@ -133,129 +128,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-量级" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      量级
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/06/01/flutter2/" class="archive-article-date">
+  	<time datetime="2020-06-01T04:52:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-01</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/06/01/flutter2/">flutter之渲染基础</a>
     </h1>
   
 
-        
-        <a href="/2019/08/22/量级/" class="archive-article-date">
-  	<time datetime="2019-08-22T03:41:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在上一篇关于复杂度的文章中我们说到<strong>总复杂度等于量级最大的那段代码的复杂度</strong>。在工程中，针对小规模问题的解决方法对大问题常常不适用，例如对几十个数字排序，可能要做一千到几千次的操作，看似差别不大，但是到了上万个数字排序时，那么就是几百万和几亿的巨大差别了，我们会说这两种方法有量级上的差别。量级是优秀工程师首先关注的。那么什么是量级呢？</p>
-<a id="more"></a>
-<h2 id="量级和数量级"><a href="#量级和数量级" class="headerlink" title="量级和数量级"></a>量级和数量级</h2><p>数量级是和量级相似的概念，数据相差10倍左右，比如个、十、百、千、万就是数量级的差距。</p>
-<p>量级是比数量级差距更大的概念。简单的讲，就是芝麻、橘子、西瓜、大象、大山、地球、太阳、银河系这样大的差别。例如在排序算法中，排序的数量从几个增加到几万的时候，计算量要增加几亿倍，而科学家找到的算法计算量只会增加十万倍左右，几亿和十万基本上就属于量级之差了。</p>
-<p>有了量级的概念后，工程师在处理不同量级的事物时有两点不同：</p>
-<ol>
-<li>小量级和大量级的东西放在一起，前者必须被忽略。</li>
-<li>几个小量级的东西放在一起，远比不上一个大量级的东西。</li>
-</ol>
-<p>一个好的工程师，要懂得把精力放在从量级上改进工程方法，这样的收获是几百倍，几万倍甚至更多。而不是每天挤出时间做重复性的事情。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">flutter</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/08/28/几道面试题/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          几道面试题
-        
-      </div>
-    </a>
   
   
-    <a href="/2019/08/21/算法基础概念-复杂度/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">算法基础概念-时间复杂度</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
-  <div id="gitment-ctn"></div> 
-<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
-<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
-<script>
-var gitment = new Gitment({
-  id: "https://xzylzz.github.io/2019/08/22/量级/",
-  owner: 'xzylzz',
-  repo: 'xzylzz.github.io',
-  oauth: {
-    client_id: '301b311ace1382fcdf89',
-    client_secret: '138f28be7554cccff2a58f9f2ff38dbef2b871a4',
-  },
-})
-gitment.render('gitment-ctn')
-</script>
-  
+    
 
 
           </div>
@@ -279,8 +205,8 @@ gitment.render('gitment-ctn')
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

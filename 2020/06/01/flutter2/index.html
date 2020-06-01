@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xzylzz.github.io">
-  <title>量级 | 我</title>
+  <title>flutter之渲染基础 | 我</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在上一篇关于复杂度的文章中我们说到总复杂度等于量级最大的那段代码的复杂度。在工程中，针对小规模问题的解决方法对大问题常常不适用，例如对几十个数字排序，可能要做一千到几千次的操作，看似差别不大，但是到了上万个数字排序时，那么就是几百万和几亿的巨大差别了，我们会说这两种方法有量级上的差别。量级是优秀工程师首先关注的。那么什么是量级呢？">
-<meta name="keywords" content="算法">
+  <meta name="description" content="在flutter开发中，最常用的就是StateflessWidget和StatefulWidget了，但是它们只是用来组装控件的容器，那么真正的布局和绘制工作是在哪里完成的呢？">
+<meta name="keywords" content="flutter">
 <meta property="og:type" content="article">
-<meta property="og:title" content="量级">
-<meta property="og:url" content="https://xzylzz.github.io/2019/08/22/量级/index.html">
+<meta property="og:title" content="flutter之渲染基础">
+<meta property="og:url" content="https://xzylzz.github.io/2020/06/01/flutter2/index.html">
 <meta property="og:site_name" content="我">
-<meta property="og:description" content="在上一篇关于复杂度的文章中我们说到总复杂度等于量级最大的那段代码的复杂度。在工程中，针对小规模问题的解决方法对大问题常常不适用，例如对几十个数字排序，可能要做一千到几千次的操作，看似差别不大，但是到了上万个数字排序时，那么就是几百万和几亿的巨大差别了，我们会说这两种方法有量级上的差别。量级是优秀工程师首先关注的。那么什么是量级呢？">
+<meta property="og:description" content="在flutter开发中，最常用的就是StateflessWidget和StatefulWidget了，但是它们只是用来组装控件的容器，那么真正的布局和绘制工作是在哪里完成的呢？">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-22T04:00:31.948Z">
+<meta property="og:updated_time" content="2020-06-01T07:44:16.379Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="量级">
-<meta name="twitter:description" content="在上一篇关于复杂度的文章中我们说到总复杂度等于量级最大的那段代码的复杂度。在工程中，针对小规模问题的解决方法对大问题常常不适用，例如对几十个数字排序，可能要做一千到几千次的操作，看似差别不大，但是到了上万个数字排序时，那么就是几百万和几亿的巨大差别了，我们会说这两种方法有量级上的差别。量级是优秀工程师首先关注的。那么什么是量级呢？">
+<meta name="twitter:title" content="flutter之渲染基础">
+<meta name="twitter:description" content="在flutter开发中，最常用的就是StateflessWidget和StatefulWidget了，但是它们只是用来组装控件的容器，那么真正的布局和绘制工作是在哪里完成的呢？">
   
   
     <link rel="icon" href="/favicon.png">
@@ -133,36 +133,44 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-量级" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-flutter2" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      量级
+      flutter之渲染基础
     </h1>
   
 
         
-        <a href="/2019/08/22/量级/" class="archive-article-date">
-  	<time datetime="2019-08-22T03:41:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-22</time>
+        <a href="/2020/06/01/flutter2/" class="archive-article-date">
+  	<time datetime="2020-06-01T04:52:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在上一篇关于复杂度的文章中我们说到<strong>总复杂度等于量级最大的那段代码的复杂度</strong>。在工程中，针对小规模问题的解决方法对大问题常常不适用，例如对几十个数字排序，可能要做一千到几千次的操作，看似差别不大，但是到了上万个数字排序时，那么就是几百万和几亿的巨大差别了，我们会说这两种方法有量级上的差别。量级是优秀工程师首先关注的。那么什么是量级呢？</p>
+        <p>在flutter开发中，最常用的就是<code>StateflessWidget</code>和<code>StatefulWidget</code>了，但是它们只是用来组装控件的容器，那么真正的布局和绘制工作是在哪里完成的呢？</p>
 <a id="more"></a>
-<h2 id="量级和数量级"><a href="#量级和数量级" class="headerlink" title="量级和数量级"></a>量级和数量级</h2><p>数量级是和量级相似的概念，数据相差10倍左右，比如个、十、百、千、万就是数量级的差距。</p>
-<p>量级是比数量级差距更大的概念。简单的讲，就是芝麻、橘子、西瓜、大象、大山、地球、太阳、银河系这样大的差别。例如在排序算法中，排序的数量从几个增加到几万的时候，计算量要增加几亿倍，而科学家找到的算法计算量只会增加十万倍左右，几亿和十万基本上就属于量级之差了。</p>
-<p>有了量级的概念后，工程师在处理不同量级的事物时有两点不同：</p>
-<ol>
-<li>小量级和大量级的东西放在一起，前者必须被忽略。</li>
-<li>几个小量级的东西放在一起，远比不上一个大量级的东西。</li>
-</ol>
-<p>一个好的工程师，要懂得把精力放在从量级上改进工程方法，这样的收获是几百倍，几万倍甚至更多。而不是每天挤出时间做重复性的事情。</p>
+<h2 id="Widget"><a href="#Widget" class="headerlink" title="Widget"></a>Widget</h2><p>我们先从一个很简单的组件看起 —— <code>Opacity</code>，看看flutter源码是如何实现。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Opacity</span> <span class="keyword">extends</span> <span class="title">SingleChildRenderObjectWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> Opacity(&#123;</span><br><span class="line">    Key key,</span><br><span class="line">    <span class="meta">@required</span> <span class="keyword">this</span>.opacity,</span><br><span class="line">    <span class="keyword">this</span>.alwaysIncludeSemantics = <span class="keyword">false</span>,</span><br><span class="line">    Widget child,</span><br><span class="line">  &#125;) : <span class="keyword">assert</span>(opacity != <span class="keyword">null</span> &amp;&amp; opacity &gt;= <span class="number">0.0</span> &amp;&amp; opacity &lt;= <span class="number">1.0</span>),</span><br><span class="line">       <span class="keyword">assert</span>(alwaysIncludeSemantics != <span class="keyword">null</span>),</span><br><span class="line">       <span class="keyword">super</span>(key: key, child: child);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">double</span> opacity;</span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">bool</span> alwaysIncludeSemantics;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  RenderOpacity createRenderObject(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> RenderOpacity(</span><br><span class="line">      opacity: opacity,</span><br><span class="line">      alwaysIncludeSemantics: alwaysIncludeSemantics,</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> updateRenderObject(BuildContext context, RenderOpacity renderObject) &#123;</span><br><span class="line">    renderObject</span><br><span class="line">      ..opacity = opacity</span><br><span class="line">      ..alwaysIncludeSemantics = alwaysIncludeSemantics;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过源码看出<code>Opacity</code>是继承自<code>SingleChildRenderObjectWidget</code>，<br><code>SingleChildRenderObjectWidget</code>又继承自<code>RenderObjectWidget</code>最终继承自<code>Widget</code>。<br>我们最常使用的<code>StatelessWidget</code>、<code>StatefulWidget</code>也继承自<code>Widget</code>。<br>它们的不同之处在于，<code>StatelessWidget</code>、<code>StatefulWidget</code>只是将其它的Widget组装起来，而<code>Opacity</code>会影响到<code>Widget</code>的绘制。但是在上面的源码中我们并没有看到与绘制相关的属性，是因为<code>Widget</code>只持有控件的配置信息，例如<code>Opacity</code>只持有属性<code>opacity</code>。</p>
+<p>那么渲染是在哪里发生的呢？</p>
+<p>其实从源码的名字可以看出，<code>createRenderObject</code> 创建渲染对象，<code>RenderObject</code>就是负责渲染工作的。最终创建了一个<code>RenderOpacity</code>对象。</p>
+<p><code>RenderOpacity</code>实现布局、点击检测、计算大小等函数。在<code>paint</code>函数中操作<code>canvas</code>画布来进行透明度控制。</p>
+<p>所以，在flutter中<code>Widget</code>只是一个配置，<code>RenderObject</code>来负责布局、绘制等操作。</p>
+<h2 id="Element"><a href="#Element" class="headerlink" title="Element"></a>Element</h2><p>我们知道了<code>Widget</code>和<code>RenderObject</code>。在flutter中，它们并不是直接关联在一起的，而是要通过一个中间人<code>Element</code>。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@immutable</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Widget</span> <span class="keyword">extends</span> <span class="title">DiagnosticableTree</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> Widget(&#123; <span class="keyword">this</span>.key &#125;);</span><br><span class="line">  <span class="keyword">final</span> Key key;</span><br><span class="line">  <span class="meta">@protected</span></span><br><span class="line">  <span class="built_in">Element</span> createElement();</span><br><span class="line">  <span class="keyword">static</span> <span class="built_in">bool</span> canUpdate(Widget oldWidget, Widget newWidget) &#123;</span><br><span class="line">    <span class="keyword">return</span> oldWidget.runtimeType == newWidget.runtimeType</span><br><span class="line">        &amp;&amp; oldWidget.key == newWidget.key;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>Widget</code>源码中可以看出，每个Widget都要实现一个<code>createElement</code>方法来创建<code>Element</code>对象。</p>
+<p><code>Element</code>会同时持有<code>Widget</code>和<code>RenderObject</code>，在<code>Widget</code>发生变化时，比较新旧变化，并进行相应的更新。</p>
+<p>在<code>Opacity</code>中，<code>Element</code>是在<code>SingleChildRenderObjectWidget</code>中创建</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@override</span></span><br><span class="line">SingleChildRenderObjectElement createElement() =&gt; <span class="keyword">new</span> SingleChildRenderObjectElement(<span class="keyword">this</span>);</span><br></pre></td></tr></table></figure>
+<p><code>Element</code>通过<code>mount</code>方法插入到Element Tree时，同时调用了widget的<code>createRenderObject</code>方法并保存在变量中。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@override</span></span><br><span class="line"><span class="keyword">void</span> mount(<span class="built_in">Element</span> parent, <span class="keyword">dynamic</span> newSlot) &#123;</span><br><span class="line">  <span class="keyword">super</span>.mount(parent, newSlot);</span><br><span class="line">  _renderObject = widget.createRenderObject(<span class="keyword">this</span>);</span><br><span class="line">  attachRenderObject(newSlot);</span><br><span class="line">  _dirty = <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文简单描述了<code>Widget</code>、<code>Element</code>、<code>RenderObject</code>之间的关系，由此了解了在flutter中是如何渲染组件的。当然其中的细节还很多，之后的文章会一一解析。</p>
 
       
 
@@ -176,7 +184,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">flutter</a>
         		</li>
       		
 		</ul>
@@ -195,18 +203,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/28/几道面试题/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          几道面试题
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/08/21/算法基础概念-复杂度/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">算法基础概念-时间复杂度</div>
+    <a href="/2020/03/30/flutter开发总结-基础/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">flutter开发总结-基础</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -245,7 +244,7 @@
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "https://xzylzz.github.io/2019/08/22/量级/",
+  id: "https://xzylzz.github.io/2020/06/01/flutter2/",
   owner: 'xzylzz',
   repo: 'xzylzz.github.io',
   oauth: {
