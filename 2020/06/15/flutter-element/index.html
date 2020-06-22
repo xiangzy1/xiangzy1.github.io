@@ -6,22 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xzylzz.github.io">
-  <title>几道面试题 | 我</title>
+  <title>flutter之Element | 我</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近闲来无事，面试了一次，记录一下面试中出现的问题。">
-<meta name="keywords" content="前端">
+  <meta name="description" content="通过上一篇的介绍，我们知道了Widget本质上是UI的配置（静态、不可变），Element则是通过Widget生成的实例。Element主要职责是根据UI的变化来维护Element Tree，包括节点的插入、更新、删除等、还是Widget和RenderObject之间的协调者。">
+<meta name="keywords" content="flutter">
 <meta property="og:type" content="article">
-<meta property="og:title" content="几道面试题">
-<meta property="og:url" content="https://xzylzz.github.io/2019/08/28/几道面试题/index.html">
+<meta property="og:title" content="flutter之Element">
+<meta property="og:url" content="https://xzylzz.github.io/2020/06/15/flutter-element/index.html">
 <meta property="og:site_name" content="我">
-<meta property="og:description" content="最近闲来无事，面试了一次，记录一下面试中出现的问题。">
+<meta property="og:description" content="通过上一篇的介绍，我们知道了Widget本质上是UI的配置（静态、不可变），Element则是通过Widget生成的实例。Element主要职责是根据UI的变化来维护Element Tree，包括节点的插入、更新、删除等、还是Widget和RenderObject之间的协调者。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/006y8mN6ly1g6fi62eeoqj30m80d4adu.jpg">
-<meta property="og:updated_time" content="2019-09-02T02:21:37.579Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gft0zxd329j313o0g1dim.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gft13ttsngj30yc0il0ur.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gft1k5tmlqj30qo0uxjun.jpg">
+<meta property="og:updated_time" content="2020-06-15T09:47:16.054Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="几道面试题">
-<meta name="twitter:description" content="最近闲来无事，面试了一次，记录一下面试中出现的问题。">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/006y8mN6ly1g6fi62eeoqj30m80d4adu.jpg">
+<meta name="twitter:title" content="flutter之Element">
+<meta name="twitter:description" content="通过上一篇的介绍，我们知道了Widget本质上是UI的配置（静态、不可变），Element则是通过Widget生成的实例。Element主要职责是根据UI的变化来维护Element Tree，包括节点的插入、更新、删除等、还是Widget和RenderObject之间的协调者。">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gft0zxd329j313o0g1dim.jpg">
   
   
     <link rel="icon" href="/favicon.png">
@@ -135,110 +137,78 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-几道面试题" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-flutter-element" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      几道面试题
+      flutter之Element
     </h1>
   
 
         
-        <a href="/2019/08/28/几道面试题/" class="archive-article-date">
-  	<time datetime="2019-08-28T08:17:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-28</time>
+        <a href="/2020/06/15/flutter-element/" class="archive-article-date">
+  	<time datetime="2020-06-15T07:49:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近闲来无事，面试了一次，记录一下面试中出现的问题。</p>
+        <p>通过上一篇的介绍，我们知道了<code>Widget</code>本质上是UI的配置（静态、不可变），<code>Element</code>则是通过<code>Widget</code>生成的实例。<br><code>Element</code>主要职责是根据UI的变化来维护Element Tree，包括节点的插入、更新、删除等、还是<code>Widget</code>和<code>RenderObject</code>之间的协调者。</p>
 <a id="more"></a>
-<h2 id="Vue响应式原理"><a href="#Vue响应式原理" class="headerlink" title="Vue响应式原理"></a>Vue响应式原理</h2><ol>
-<li>任何一个Vue Component都有一个与之对应的<code>Watcher</code>实例。</li>
-<li>Vue<code>data</code>上的属性会使用<code>Object.defineProperty</code>添加<code>getter</code>和<code>setter</code>。</li>
-<li>当Vue Component <code>render</code>函数被执行的时候，<code>data</code>会被<code>触碰(touch)</code>，即被“读”，此时<code>getter</code>方法会被触发，收集依赖。</li>
-<li><code>data</code>被改动时（主要是用户操作），<code>setter</code>方法会被调用，此时Vue会去通知（主要是通过<code>getter</code>收集的依赖，调用<code>Watcher</code>update）所有依赖于此<code>data</code>的组件去更新。</li>
-</ol>
-<h2 id="上述只是数据改变视图的过程，是单向绑定，Vue怎么做到双向绑定"><a href="#上述只是数据改变视图的过程，是单向绑定，Vue怎么做到双向绑定" class="headerlink" title="上述只是数据改变视图的过程，是单向绑定，Vue怎么做到双向绑定"></a>上述只是数据改变视图的过程，是单向绑定，Vue怎么做到双向绑定</h2><p>使用<code>v-model</code>实现双向绑定，<code>v-model</code>本质上是一个语法糖。下面两种写法作用基本相同。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  template: <span class="string">'&lt;input :value="message" @input="message=$event.target.value"&gt;'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><code>v-model</code>主要是在组件上添加了<code>value</code>属性，所以在我们使用<code>v-model</code>的时候不能同时使用<code>value</code>。除此之外<code>v-model</code>也在运行时做了一些优化（例如中文输入触发input事件的处理，用到<code>transitionstart</code>, <code>transitionend</code>事件），可以支持表单原生组件，也可以支持自定义组件。</p>
-<h2 id="js的事件循环"><a href="#js的事件循环" class="headerlink" title="js的事件循环"></a>js的事件循环</h2><ol>
-<li>所有同步任务在主线程上执行，形成一个执行栈。</li>
-<li>主线程之外还有一个“任务队列”。只要异步任务有了结果，就在“任务队列”中放一个事件。</li>
-<li>一旦执行栈中的任务执行完毕，系统会读取“任务队列”，看有哪些事件，将对应的异步任务结束等待状态，并放入执行栈开始执行。</li>
-<li>不断重复上面三步。</li>
-</ol>
-<p>“任务队列”又分为两个类型：<code>macro task</code>、<code>micro task</code>，每个<code>macro task</code>结束后都要清空<code>micro task</code>。<br>在浏览器环境下，常见的<code>macro task</code>有<code>setTimeout</code>、<code>MessageChannel</code>、<code>postMessage</code>；常见的<code>micro task</code>有<code>Promise.then</code>、<code>MutationObserver</code>。</p>
-<h2 id="Vue-nextTick实现"><a href="#Vue-nextTick实现" class="headerlink" title="Vue nextTick实现"></a>Vue nextTick实现</h2><p>在使用Vue过程中，在改变数据之后获取DOM，要在<code>nextTick</code>回调中才能获取改变之后的数据，是因为数据变化到DOM的变化是一个异步的过程。<br><code>nextTick</code>将所有回调函数推到一个队列中，再在下一个事件循环中全部执行。优先使用<code>micro task</code>实现。</p>
-<h2 id="mpvue为什么可以使用vue的语法写小程序"><a href="#mpvue为什么可以使用vue的语法写小程序" class="headerlink" title="mpvue为什么可以使用vue的语法写小程序"></a>mpvue为什么可以使用vue的语法写小程序</h2><p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g6fi62eeoqj30m80d4adu.jpg" alt="yuanli"></p>
-<p>大概原理</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gft0zxd329j313o0g1dim.jpg" alt="element"></p>
+<p>如图所示，Element可分为两类</p>
 <ul>
-<li>Vue.js实例与小程序Page实例建立关联</li>
-<li>小程序和Vue.js生命周期建立映射关系，能在小程序生命周期中触发Vue.js生命周期</li>
-<li>小程序事件建立代理机制，在事件代理函数中触发与之对应的Vue.js组件事件响应</li>
-<li>vue与小程序数据同步</li>
+<li>Component Element: 组合型Element；Component Widget、Proxy Widget对应的Element都是这一类型，特点是子节点对应的Widget需要通过<code>build</code>方法去创建，同时，该类型Element都只有一个子节点</li>
+<li>Render Element：渲染型Element；对应Render Widget。</li>
 </ul>
-<h2 id="…操作符"><a href="#…操作符" class="headerlink" title="…操作符"></a>…操作符</h2><ul>
-<li>rest参数<br>用户获取函数的多余参数，替代<code>arguments</code>对象。</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">...values</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> values.reduce(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a - b)</span><br><span class="line">&#125;</span><br><span class="line">add(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>) <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+<h2 id="Element与其他元素的关系"><a href="#Element与其他元素的关系" class="headerlink" title="Element与其他元素的关系"></a>Element与其他元素的关系</h2><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gft13ttsngj30yc0il0ur.jpg" alt="relate"></p>
 <ul>
-<li>扩展运算符</li>
+<li>Element通过parent、child指针形成Element Tree</li>
+<li>Element持有Widget、RenderObject</li>
+<li>State 是绑定在 Element上的</li>
 </ul>
-<p>扩展运算符的应用比较广泛，例如：</p>
-<ol>
-<li>参数传递 <code>arr.push(...[1,2,3])</code></li>
-<li>合并数组 <code>[...arr1, ...arr2, ...arr3]</code></li>
-<li>字符串转数组 <code>[...str]</code>，任何实现了<code>Iterator</code>接口的对象都可以用扩展运算符转为真正的数组。</li>
-</ol>
-<h2 id="PromiseA-规范"><a href="#PromiseA-规范" class="headerlink" title="PromiseA+规范"></a>PromiseA+规范</h2><p>一个<code>Promise</code>代表一个异步操作的最终结果。主要的操作方式是调用<code>then</code>方法，它接收的回调函数接收<code>Promise</code>成功或失败的结果。<br>一个<code>Promise</code>有且只有一个状态(pending、fulfilled、rejected)。<br>pending状态可以转变为fulfilled或rejected状态，反之则不行。<br>fulfilled状态必须有一个value且不可改变。<br>rejected状态必须有一个reason且不可改变。<br>一个<code>Promise</code>必须提供一个<code>then</code>方法，用来获取当前或最终的value或reason，一个<code>Promise</code>的<code>then</code>方法接收两个可选参数。<code>then</code>方法返回一个新的<code>Promise</code>对象，可链式调用。</p>
-<h2 id="使用try…catch能否捕获promise的异常，全局处理promise错误的方法"><a href="#使用try…catch能否捕获promise的异常，全局处理promise错误的方法" class="headerlink" title="使用try…catch能否捕获promise的异常，全局处理promise错误的方法"></a>使用try…catch能否捕获promise的异常，全局处理promise错误的方法</h2><ol>
-<li>不可以，try…catch执行捕获同步代码的错误。</li>
-<li>监听<code>unhandledrejection</code>事件，可以捕获未处理的<code>Promise</code>错误。</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'unhandledrejection'</span>, event =&gt; ...)</span><br></pre></td></tr></table></figure>
-<h2 id="给Promise添加一个finally方法"><a href="#给Promise添加一个finally方法" class="headerlink" title="给Promise添加一个finally方法"></a>给Promise添加一个finally方法</h2><p><code>Promise</code>标准中仅指定了<code>Promise</code>对象的<code>then</code>方法的行为，其它一切常用的方法都没有指定。<br><code>finally</code>可以用对<code>then</code>函数的包装实现。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.prototype.finally = <span class="function"><span class="keyword">function</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.then(</span><br><span class="line">    (value) =&gt; &#123;</span><br><span class="line">      fn()</span><br><span class="line">      <span class="keyword">return</span> value</span><br><span class="line">    &#125;,</span><br><span class="line">    (err) =&gt; &#123;</span><br><span class="line">      fn()</span><br><span class="line">      <span class="keyword">throw</span> err</span><br><span class="line">    &#125;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="实现一个once函数，传入一个函数参数，只会执行一次"><a href="#实现一个once函数，传入一个函数参数，只会执行一次" class="headerlink" title="实现一个once函数，传入一个函数参数，只会执行一次"></a>实现一个once函数，传入一个函数参数，只会执行一次</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">once</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> flag = <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">return</span> funciton(...args) &#123;</span><br><span class="line">    <span class="keyword">if</span> (flag) <span class="keyword">return</span></span><br><span class="line">    fn.apply(<span class="literal">null</span>, args)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="TCP协议如何做到保证数据的正确"><a href="#TCP协议如何做到保证数据的正确" class="headerlink" title="TCP协议如何做到保证数据的正确"></a>TCP协议如何做到保证数据的正确</h2><ol>
-<li>确认和重传：接收方收到报文会确认，发送方一段时间没有收到确认就重传。</li>
-<li>数据校验。</li>
-<li>数据合理分片和排序。</li>
-<li>流量控制：当接收方来不及处理发送的数据，提示发送方降低发送的频率，防止包丢失。</li>
-<li>拥塞控制：当网络拥塞时，减少数据的发送。</li>
-</ol>
-<h2 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h2><ol>
-<li>（SYN=1， seq=x）：<br>客户端发送一个TCP的SYN标志位置1的包，指明客户端打算连接的服务器端口，以及初始序号X，保存在包头的序列号字段里，发送完毕后，客户端进入<code>SYN_SEND</code>状态。</li>
-<li>（SYN=1，ACK=1，seq=y，ACKnum=x+1）：<br>服务器发回确认包（ACK）应答。即SYN标志位和ACK标志位均为1.服务器选择自己ISN序列号，放到Seq域里，同时将确认序列号（Acknowledgement Number）设置为客户端的ISN+1，即X+1。发送完毕后，服务器端进入<code>SYN_RCVD</code>状态。</li>
-<li>（ACK=1，ACKnum=y+1）：<br>客户端再次发送确认包（ACK），SYN标志位为1，并且把服务器发来的ACK的序号字段+1，放在确认字段中发送给对方，并且在数据段放写的+1<br>发送完毕后，客户端进入<code>ESTABLISHED</code>状态，当服务器接收到这个包时，也进入<code>ESTABLISHED</code>状态，TCP握手结束。</li>
-</ol>
-<h2 id="https的握手"><a href="#https的握手" class="headerlink" title="https的握手"></a>https的握手</h2><p><a href="https://www.ruanyifeng.com/blog/2014/02/ssl_tls.html" target="_blank" rel="noopener">SSL/TLS协议运行机制</a></p>
-<ol>
-<li>客户端向服务器端索要并验证公钥。</li>
-<li>双方协商生成“对话密钥”。</li>
-<li>双方采用“对话密钥”进行加密通信。</li>
-</ol>
-<h2 id="webpack-xxx-hash-js的作用，为什么使用-不行"><a href="#webpack-xxx-hash-js的作用，为什么使用-不行" class="headerlink" title="webpack xxx-[hash].js的作用，为什么使用?不行"></a>webpack xxx-[hash].js的作用，为什么使用?不行</h2><p>文件改变hash会改变，更新缓存。<br>使用<code>?v=xxx</code>，在使用CDN的过程中，涉及到<code>html</code>和静态资源更新的时间差问题，在两种资源上线的间隔内可能会出现资源错误的情况。</p>
-<h2 id="CSS-BFC是什么"><a href="#CSS-BFC是什么" class="headerlink" title="CSS BFC是什么"></a>CSS BFC是什么</h2><blockquote>
-<p>块状格式化上下文(Block Formatting Context)，是Web页面的可视化CSS渲染的一部分，是块盒子的布局过程发生的区域，也是浮动元素与其它元素交互的区域。<br>块状格式化上下文对浮动定位与清楚浮动都很重要。浮动定位和清除浮动定位只会应用于一个BFC内的元素。浮动不会影响其它BFC元素中的布局，而清除浮动只能清除同一BFC中在它前面的元素浮动。外边剧折叠也只会发生在属于同一BFC块之间。</p>
-</blockquote>
-<p>具有BFC特性的元素可以看作是隔离了的独立容器，容器里面的元素不会在布局上影响到外面的元素，并且BFC具有普通容易所没有的一些特性。<br>可以触发BFC特性：</p>
+<h2 id="Element的生命周期"><a href="#Element的生命周期" class="headerlink" title="Element的生命周期"></a>Element的生命周期</h2><ul>
+<li>在UI初次创建、UI刷新时老Widget不匹配时，parent通过<code>Element.inflateWidget</code>-&gt;<code>Widget.createElement</code>创建child Element。</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@protected</span></span><br><span class="line"><span class="built_in">Element</span> inflateWidget(Widget newWidget, <span class="keyword">dynamic</span> newSlot) &#123;</span><br><span class="line">  <span class="keyword">assert</span>(newWidget != <span class="keyword">null</span>);</span><br><span class="line">  <span class="keyword">final</span> Key key = newWidget.key;</span><br><span class="line">  <span class="comment">/// 如果 widget 有 global key并且存在一个有相同 global key的 element，重用Element而不是创建一个新的</span></span><br><span class="line">  <span class="keyword">if</span> (key <span class="keyword">is</span> GlobalKey) &#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="built_in">Element</span> newChild = _retakeInactiveElement(key, newWidget);</span><br><span class="line">    <span class="keyword">if</span> (newChild != <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">assert</span>(newChild._parent == <span class="keyword">null</span>);</span><br><span class="line">      <span class="keyword">assert</span>(() &#123;</span><br><span class="line">        _debugCheckForCycles(newChild);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">      &#125;());</span><br><span class="line">      newChild._activateWithParent(<span class="keyword">this</span>, newSlot);</span><br><span class="line">      <span class="keyword">final</span> <span class="built_in">Element</span> updatedChild = updateChild(newChild, newWidget, newSlot);</span><br><span class="line">      <span class="keyword">assert</span>(newChild == updatedChild);</span><br><span class="line">      <span class="keyword">return</span> updatedChild;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/// 创建新Element</span></span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">Element</span> newChild = newWidget.createElement();</span><br><span class="line">  <span class="keyword">assert</span>(() &#123;</span><br><span class="line">    _debugCheckForCycles(newChild);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125;());</span><br><span class="line">  newChild.mount(<span class="keyword">this</span>, newSlot);</span><br><span class="line">  <span class="keyword">assert</span>(newChild._debugLifecycleState == _ElementLifecycle.active);</span><br><span class="line">  <span class="keyword">return</span> newChild;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>body根元素</li>
-<li>浮动元素：float除none以外的值</li>
-<li>绝对定位元素： position(absolute、fixed)</li>
-<li>display为inline-block,table-cells,flex</li>
-<li>overflow除了visible以外的值</li>
+<li>parent通过<code>Element.mount</code>将新创建的child插入Element tree中指定的插槽处。</li>
 </ul>
-<h2 id="BFC和浮动的关系"><a href="#BFC和浮动的关系" class="headerlink" title="BFC和浮动的关系"></a>BFC和浮动的关系</h2><p>BFC可以包含浮动的元素。浮动元素会脱离文档流，使容器高度塌陷，如果触发容器的BFC，那么容器将会包裹浮动元素。<br>BFC可以阻止元素被其它浮动元素覆盖。</p>
-<h2 id="给定两个有序数据，实现一个merge函数，将数据合并并且保证有序"><a href="#给定两个有序数据，实现一个merge函数，将数据合并并且保证有序" class="headerlink" title="给定两个有序数据，实现一个merge函数，将数据合并并且保证有序"></a>给定两个有序数据，实现一个<code>merge</code>函数，将数据合并并且保证有序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">a1, a2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> ret = []</span><br><span class="line">  <span class="keyword">let</span> p1 = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> p2 = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> p = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">let</span> len1 = a1.length</span><br><span class="line">  <span class="keyword">let</span> len2 = a2.length</span><br><span class="line">  <span class="keyword">while</span>(p1 &lt; len1 &amp;&amp; p2 &lt; len2) &#123;</span><br><span class="line">    <span class="keyword">if</span> (a1[p1] &lt; a2[p2] &#123;</span><br><span class="line">      ret[p] = a1[p1++]</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      ret[p] = a2[p2++]</span><br><span class="line">    &#125;</span><br><span class="line">    p++</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> ret</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>或者…</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">a1, a2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [...a1, ...a2].sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a - b)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="webpack原理、如何实现异步chunk"><a href="#webpack原理、如何实现异步chunk" class="headerlink" title="webpack原理、如何实现异步chunk"></a>webpack原理、如何实现异步chunk</h2><p>webpack还不太熟… 日后再更</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@mustCallSuper</span></span><br><span class="line"><span class="keyword">void</span> mount(<span class="built_in">Element</span> parent, <span class="keyword">dynamic</span> newSlot) &#123;</span><br><span class="line">  <span class="keyword">assert</span>(_debugLifecycleState == _ElementLifecycle.initial);</span><br><span class="line">  <span class="keyword">assert</span>(widget != <span class="keyword">null</span>);</span><br><span class="line">  <span class="keyword">assert</span>(_parent == <span class="keyword">null</span>);</span><br><span class="line">  <span class="keyword">assert</span>(parent == <span class="keyword">null</span> || parent._debugLifecycleState == _ElementLifecycle.active);</span><br><span class="line">  <span class="keyword">assert</span>(slot == <span class="keyword">null</span>);</span><br><span class="line">  <span class="keyword">assert</span>(depth == <span class="keyword">null</span>);</span><br><span class="line">  <span class="keyword">assert</span>(!_active);</span><br><span class="line">  _parent = parent;</span><br><span class="line">  _slot = newSlot;</span><br><span class="line">  _depth = _parent != <span class="keyword">null</span> ? _parent.depth + <span class="number">1</span> : <span class="number">1</span>;</span><br><span class="line">  _active = <span class="keyword">true</span>;</span><br><span class="line">  <span class="keyword">if</span> (parent != <span class="keyword">null</span>) <span class="comment">// Only assign ownership if the parent is non-null</span></span><br><span class="line">    _owner = parent.owner;</span><br><span class="line">  <span class="keyword">final</span> Key key = widget.key;</span><br><span class="line">  <span class="keyword">if</span> (key <span class="keyword">is</span> GlobalKey) &#123;</span><br><span class="line">    key._register(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  _updateInheritance();</span><br><span class="line">  <span class="keyword">assert</span>(() &#123;</span><br><span class="line">    _debugLifecycleState = _ElementLifecycle.active;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125;());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时，element处于active状态，内容随时可能显示在屏幕上。</p>
+<ul>
+<li>由于状态更新、UI变化等，element 所在位置的 Widget可能发生了变化，此时 parent 会调用 <code>Element.update</code> 去更新子节点，update 会以当前节点为根节点的子树上递归进行，直到叶子节点。</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@mustCallSuper</span></span><br><span class="line"><span class="keyword">void</span> update(covariant Widget newWidget) &#123;</span><br><span class="line">  <span class="comment">// This code is hot when hot reloading, so we try to</span></span><br><span class="line">  <span class="comment">// only call _AssertionError._evaluateAssertion once.</span></span><br><span class="line">  <span class="keyword">assert</span>(_debugLifecycleState == _ElementLifecycle.active</span><br><span class="line">      &amp;&amp; widget != <span class="keyword">null</span></span><br><span class="line">      &amp;&amp; newWidget != <span class="keyword">null</span></span><br><span class="line">      &amp;&amp; newWidget != widget</span><br><span class="line">      &amp;&amp; depth != <span class="keyword">null</span></span><br><span class="line">      &amp;&amp; _active</span><br><span class="line">      &amp;&amp; Widget.canUpdate(widget, newWidget));</span><br><span class="line">  <span class="comment">// This Element was told to update and we can now release all the global key</span></span><br><span class="line">  <span class="comment">// reservations of forgotten children. We cannot do this earlier because the</span></span><br><span class="line">  <span class="comment">// forgotten children still represent global key duplications if the element</span></span><br><span class="line">  <span class="comment">// never updates (the forgotten children are not removed from the tree</span></span><br><span class="line">  <span class="comment">// until the call to update happens)</span></span><br><span class="line">  <span class="keyword">assert</span>(() &#123;</span><br><span class="line">    _debugForgottenChildrenWithGlobalKey.forEach(_debugRemoveGlobalKeyReservation);</span><br><span class="line">    _debugForgottenChildrenWithGlobalKey.clear();</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125;());</span><br><span class="line">  _widget = newWidget;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果状态更新时，element被移除，此时parent将调用 <code>deactivateChild</code> 方法<ul>
+<li>从 element tree 中移除该 element</li>
+<li>将相应的 render object 从 object tree 上移除</li>
+<li>将 element添加到 <code>owner._inactiveElements</code> 中，在添加过程中会对 以该element为根节点的子树上的所有节点调用<code>deactivate</code>方法。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@protected</span></span><br><span class="line"><span class="keyword">void</span> deactivateChild(<span class="built_in">Element</span> child) &#123;</span><br><span class="line">  <span class="keyword">assert</span>(child != <span class="keyword">null</span>);</span><br><span class="line">  <span class="keyword">assert</span>(child._parent == <span class="keyword">this</span>);</span><br><span class="line">  child._parent = <span class="keyword">null</span>;</span><br><span class="line">  child.detachRenderObject();</span><br><span class="line">  owner._inactiveElements.add(child); <span class="comment">// this eventually calls child.deactivate()</span></span><br><span class="line">  <span class="keyword">assert</span>(() &#123;</span><br><span class="line">    <span class="keyword">if</span> (debugPrintGlobalKeyedWidgetLifecycle) &#123;</span><br><span class="line">      <span class="keyword">if</span> (child.widget.key <span class="keyword">is</span> GlobalKey)</span><br><span class="line">        debugPrint(<span class="string">'Deactivated $child (keyed child of $this)'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125;());</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">void</span> detachRenderObject() &#123;</span><br><span class="line">  visitChildren((<span class="built_in">Element</span> child) &#123;</span><br><span class="line">    child.detachRenderObject();</span><br><span class="line">  &#125;);</span><br><span class="line">  _slot = <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时 element 处于 inactive 状态，并从屏幕消失，该状态一直持续到当前帧动画结束</p>
+<ul>
+<li><p>从element进入 inactive 状态到当前帧动画结束期间，还有被“抢救”的机会，前提是带有 <code>Global Key</code> &amp;&amp; 被重新插入树中，此时</p>
+<ul>
+<li>该 element 会从 <code>owner._inactiveElements</code>中移除</li>
+<li>对该 element subtree 上所有节点调用 <code>active</code> 方法</li>
+<li>将相应的「render object」重新插入「render tree」中；</li>
+<li>该 element subtree 又进入 “active” 状态，并将再次出现在屏幕上。</li>
+</ul>
+</li>
+<li><p>对于所有在当前帧动画结束时未能成功『抢救』回来的「Inactive Elements」都将被 unmount；</p>
+</li>
+</ul>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@mustCallSuper</span></span><br><span class="line"><span class="keyword">void</span> unmount() &#123;</span><br><span class="line">  <span class="keyword">assert</span>(_debugLifecycleState == _ElementLifecycle.inactive);</span><br><span class="line">  <span class="keyword">assert</span>(_widget != <span class="keyword">null</span>); <span class="comment">// Use the private property to avoid a CastError during hot reload.</span></span><br><span class="line">  <span class="keyword">assert</span>(depth != <span class="keyword">null</span>);</span><br><span class="line">  <span class="keyword">assert</span>(!_active);</span><br><span class="line">  <span class="comment">// Use the private property to avoid a CastError during hot reload.</span></span><br><span class="line">  <span class="keyword">final</span> Key key = _widget.key;</span><br><span class="line">  <span class="keyword">if</span> (key <span class="keyword">is</span> GlobalKey) &#123;</span><br><span class="line">    key._unregister(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">assert</span>(() &#123;</span><br><span class="line">    _debugLifecycleState = _ElementLifecycle.defunct;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125;());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>至此，element 生命周期圆满结束。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gft1k5tmlqj30qo0uxjun.jpg" alt="lifecycle"></p>
 
       
 
@@ -252,7 +222,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">flutter</a>
         		</li>
       		
 		</ul>
@@ -271,18 +241,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/05/关于CSS-BFC/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          关于CSS BFC
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/08/22/量级/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">量级</div>
+    <a href="/2020/06/07/flutter3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">flutter之Widget</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -321,7 +282,7 @@
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "https://xzylzz.github.io/2019/08/28/几道面试题/",
+  id: "https://xzylzz.github.io/2020/06/15/flutter-element/",
   owner: 'xzylzz',
   repo: 'xzylzz.github.io',
   oauth: {
