@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xzylzz.github.io">
-  <title>mpvue踩坑 | 我</title>
+  <title>flutter-runApp | 我</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近公司准备新做一个小程序，准备尝试一下最近比较火的小程序框架mpvue  之前一家公司做项目的时候，也写了差不多一年的vue 上来就是一顿初始化项目、安装依赖、引入Vuex、启动项目，一切都是那么完美 组件当然是要用的，但是比起浏览器的vue，能力还是要缺少很多，不过也还是能用，slot居然不好使倒是让人蛮难受，不过又写会熟悉的vue感觉还是不错">
-<meta name="keywords" content="前端,小程序">
+  <meta name="description" content="有了前面Widget和Element的基础，现在我们大概可以从runApp方法开始了解一下Flutter的启动流程。">
+<meta name="keywords" content="flutter">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mpvue踩坑">
-<meta property="og:url" content="https://xzylzz.github.io/2018/07/22/mpvue-issue/index.html">
+<meta property="og:title" content="flutter-runApp">
+<meta property="og:url" content="https://xzylzz.github.io/2020/06/30/flutter-runApp/index.html">
 <meta property="og:site_name" content="我">
-<meta property="og:description" content="最近公司准备新做一个小程序，准备尝试一下最近比较火的小程序框架mpvue  之前一家公司做项目的时候，也写了差不多一年的vue 上来就是一顿初始化项目、安装依赖、引入Vuex、启动项目，一切都是那么完美 组件当然是要用的，但是比起浏览器的vue，能力还是要缺少很多，不过也还是能用，slot居然不好使倒是让人蛮难受，不过又写会熟悉的vue感觉还是不错">
+<meta property="og:description" content="有了前面Widget和Element的基础，现在我们大概可以从runApp方法开始了解一下Flutter的启动流程。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-21T02:17:16.942Z">
+<meta property="og:updated_time" content="2020-06-30T09:48:31.471Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mpvue踩坑">
-<meta name="twitter:description" content="最近公司准备新做一个小程序，准备尝试一下最近比较火的小程序框架mpvue  之前一家公司做项目的时候，也写了差不多一年的vue 上来就是一顿初始化项目、安装依赖、引入Vuex、启动项目，一切都是那么完美 组件当然是要用的，但是比起浏览器的vue，能力还是要缺少很多，不过也还是能用，slot居然不好使倒是让人蛮难受，不过又写会熟悉的vue感觉还是不错">
+<meta name="twitter:title" content="flutter-runApp">
+<meta name="twitter:description" content="有了前面Widget和Element的基础，现在我们大概可以从runApp方法开始了解一下Flutter的启动流程。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -133,52 +133,48 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-mpvue-issue" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-flutter-runApp" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      mpvue踩坑
+      flutter-runApp
     </h1>
   
 
         
-        <a href="/2018/07/22/mpvue-issue/" class="archive-article-date">
-  	<time datetime="2018-07-22T03:12:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-22</time>
+        <a href="/2020/06/30/flutter-runApp/" class="archive-article-date">
+  	<time datetime="2020-06-30T08:23:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>最近公司准备新做一个小程序，准备尝试一下最近比较火的小程序框架<code>mpvue</code></p>
-</blockquote>
-<p>之前一家公司做项目的时候，也写了差不多一年的<code>vue</code></p>
-<p>上来就是一顿初始化项目、安装依赖、引入<code>Vuex</code>、启动项目，一切都是那么完美</p>
-<p>组件当然是要用的，但是比起浏览器的<code>vue</code>，能力还是要缺少很多，不过也还是能用，<code>slot</code>居然不好使倒是让人蛮难受，不过又写会熟悉的<code>vue</code>感觉还是不错<br><a id="more"></a></p>
-<h2 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h2><p>仅仅过了一天后，有一位同事要加入到这个项目的开发，于是克隆项目到本地，安装，启动…</p>
-<p><code>dist</code>目录里居然没有编译出来<code>app.json</code>等一系列根目录的文件导致项目跑步起来，但是<code>webpack</code>编译居然还特么的成功…</p>
-<p>总之来来回回的都不能行，觉得应该是有些依赖更新了，造成了这么个<code>bug</code></p>
-<p>后来发现，在新下载的模板中有一个新的<code>main.json</code>文件来编译到小程序<code>app.json</code>文件(这仅仅过了一天怎么就？？？)</p>
-<p><code>mpvue-loader</code>的版本也更新了，想想这应该就是在我老项目上运行异常的原因吧？</p>
-<p>之前对依赖包的版本没多大关注，这次踩了这么一个坑，赶紧看看版本的问题喽</p>
-<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><p>在我们项目中的<code>package.json</code>文件是记录着我们整个项目需要使用到的各种依赖，通常记录的版本号之前都有一个<code>^</code>符号，比如我们的版本是<code>1.2.3</code>下载版本的范围就在<code>1.2.3-2.0.0</code>之间，去找最新的依赖，没想到这次新版本的依赖居然出现了问题</p>
-<p>其实我们在开发的时候是不希望每次重新安装的时候都去更新依赖，因为确实有些新版本反而会带来意想不到的<code>bug</code>，导致本来完成的工作又得增加一部分；在多人协作的时候，也没有办法保证环境的完全一致从而造成代码之间的差异。</p>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>1.固定版本号，去除<code>^</code>等范围符号</p>
-<p>2.<code>package-lock.json</code> 在<code>npm install</code>的时候生成的一份文件，记录当前状态实际安装的各个<code>package</code>的来源和版本号</p>
-<p>但是在不同的<code>npm</code>版本下，规则并不一样…</p>
-<p><code>npm 5.0.x</code>：不管<code>package.json</code>怎么变，<code>npm i</code>都会根据<code>lock</code>文件下载</p>
-<p><code>5.1.0</code>之后，无视<code>lock</code>，去下载最新的<code>npm</code></p>
-<p><code>5.4.2</code>之后，如果改了<code>package.json</code>，且和<code>lock</code>文件不同，执行<code>npm i</code>的时候会根据<code>package</code>中的版本号和语义去下载新的包，并更新至<code>lock</code></p>
-<p>…</p>
-<p>3.<code>yarn</code>会创建<code>yarn.lock</code>文件，可以创建完全相同的环境</p>
-<h3 id="继续踩坑"><a href="#继续踩坑" class="headerlink" title="继续踩坑"></a>继续踩坑</h3><p>更新到最新的<code>mpvue</code>项目之后，发现之前在模板写的相对路径的图片现在都不能访问到了，必须要改成绝对路径。有些改成了绝对路径的图片也找不到，看了下在编译的过程中并没有把文件夹下的图片复制到<code>dist</code>，心好累…</p>
-<hr>
-<h3 id="2018年09月21日更新"><a href="#2018年09月21日更新" class="headerlink" title="2018年09月21日更新"></a>2018年09月21日更新</h3><p>mpvue会频繁的<code>setData</code>，导致性能较差，并且会使<code>scroll-view</code>的<code>scroll-top</code>和<code>scroll-into-view</code>属性产生bug，会连续设置导致无法滚动</p>
-<p>目前更改为<code>fix-mpvue</code>包解决了此问题</p>
+        <p>有了前面Widget和Element的基础，现在我们大概可以从<code>runApp</code>方法开始了解一下Flutter的启动流程。</p>
+<a id="more"></a>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> main() =&gt; runApp(MyApp());</span><br></pre></td></tr></table></figure>
+<p>这是我们初始化Flutter时默认代码，非常简单，就执行了<code>runApp</code>方法，传入我们app的Widget。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> runApp(Widget app) &#123;</span><br><span class="line">  WidgetsFlutterBinding.ensureInitialized()</span><br><span class="line">    ..scheduleAttachRootWidget(app)</span><br><span class="line">    ..scheduleWarmUpFrame();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>runApp就只有三行代码，我们一个一个看。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> WidgetsBinding ensureInitialized() &#123;</span><br><span class="line">  <span class="keyword">if</span> (WidgetsBinding.instance == <span class="keyword">null</span>)</span><br><span class="line">    WidgetsFlutterBinding();</span><br><span class="line">  <span class="keyword">return</span> WidgetsBinding.instance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>ensureInitialized</code>，从名字就可以看出来，是确保这个对象已经初始化了，返回的是一个<code>WidgetsBinding</code>对象，这个名字很熟悉了，上一节讲<code>BuildOwner</code>提到过，<code>BuildOwner</code>是在<code>WidgetsBinding</code>中创建的。现在我们又知道<code>WidgetsBinding</code>是在<code>runApp</code>时就创建的。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WidgetsFlutterBinding</span> <span class="keyword">extends</span> <span class="title">BindingBase</span> <span class="title">with</span> <span class="title">GestureBinding</span>, <span class="title">ServicesBinding</span>, <span class="title">SchedulerBinding</span>, <span class="title">PaintingBinding</span>, <span class="title">SemanticsBinding</span>, <span class="title">RendererBinding</span>, <span class="title">WidgetsBinding</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> WidgetsBinding ensureInitialized() &#123;</span><br><span class="line">    <span class="keyword">if</span> (WidgetsBinding.instance == <span class="keyword">null</span>)</span><br><span class="line">      WidgetsFlutterBinding();</span><br><span class="line">    <span class="keyword">return</span> WidgetsBinding.instance;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>WidgetsFlutter</code>本身没什么逻辑，但是混入了很多个<code>binding</code>，每个<code>binding</code>都有自己不同的功能，可以单独使用，也可以像<code>WidgetsFlutter</code>一样混合使用。</p>
+<p><code>ensureInitialized</code>返回的是一个<code>WidgetsBinding</code>实例，我们首先看一下<code>WidgetsBinding</code>的创建过程。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mixin WidgetsBinding on BindingBase, ServicesBinding, SchedulerBinding, GestureBinding, RendererBinding, SemanticsBinding &#123;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">BindingBase</span> </span>&#123;</span><br><span class="line">  <span class="comment">/// Default abstract constructor for bindings.</span></span><br><span class="line">  <span class="comment">///</span></span><br><span class="line">  <span class="comment">/// First calls [initInstances] to have bindings initialize their</span></span><br><span class="line">  <span class="comment">/// instance pointers and other state, then calls</span></span><br><span class="line">  <span class="comment">/// [initServiceExtensions] to have bindings initialize their</span></span><br><span class="line">  <span class="comment">/// observatory service extensions, if any.</span></span><br><span class="line">  BindingBase() &#123;</span><br><span class="line">    developer.Timeline.startSync(<span class="string">'Framework initialization'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">assert</span>(!_debugInitialized);</span><br><span class="line">    initInstances();</span><br><span class="line">    <span class="keyword">assert</span>(_debugInitialized);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">assert</span>(!_debugServiceExtensionsRegistered);</span><br><span class="line">    initServiceExtensions();</span><br><span class="line">    <span class="keyword">assert</span>(_debugServiceExtensionsRegistered);</span><br><span class="line">    developer.postEvent(<span class="string">'Flutter.FrameworkInitialization'</span>, &lt;<span class="built_in">String</span>, <span class="built_in">String</span>&gt;&#123;&#125;);</span><br><span class="line">    developer.Timeline.finishSync();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>WidgetsBinding</code>继承自<code>BingdingBase</code>，<code>BindingBase</code>的构造函数中调用了<code>initInstance</code>方法来生成一个实例。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// WidgetBinding中的实现</span></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="keyword">void</span> initInstances() &#123;</span><br><span class="line">    <span class="keyword">super</span>.initInstances();</span><br><span class="line">    _instance = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">    _buildOwner = BuildOwner();</span><br><span class="line">    buildOwner.onBuildScheduled = _handleBuildScheduled;</span><br><span class="line">    <span class="built_in">window</span>.onLocaleChanged = handleLocaleChanged;</span><br><span class="line">    <span class="built_in">window</span>.onAccessibilityFeaturesChanged = handleAccessibilityFeaturesChanged;</span><br><span class="line">    SystemChannels.navigation.setMethodCallHandler(_handleNavigationInvocation);</span><br><span class="line">    FlutterErrorDetails.propertiesTransformers.add(transformDebugCreator);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>在这里可以看到，上篇提到的<code>BuildOwner</code>就是在这时候被创建。</p>
+<p>接着<code>runApp</code>调用了<code>WidgetsBinding.scheduleAttachRootWidget</code>，并将我们自定义的Widget传入</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@protected</span></span><br><span class="line"><span class="keyword">void</span> scheduleAttachRootWidget(Widget rootWidget) &#123;</span><br><span class="line">  Timer.run(() &#123;</span><br><span class="line">    attachRootWidget(rootWidget);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> attachRootWidget(Widget rootWidget) &#123;</span><br><span class="line">  _readyToProduceFrames = <span class="keyword">true</span>;</span><br><span class="line">  _renderViewElement = RenderObjectToWidgetAdapter&lt;RenderBox&gt;(</span><br><span class="line">    container: renderView,</span><br><span class="line">    debugShortDescription: <span class="string">'[root]'</span>,</span><br><span class="line">    child: rootWidget,</span><br><span class="line">  ).attachToRenderTree(buildOwner, renderViewElement <span class="keyword">as</span> RenderObjectToWidgetElement&lt;RenderBox&gt;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// RenderObjectToWidgetAdapter.attachToRenderTree</span></span><br><span class="line">RenderObjectToWidgetElement&lt;T&gt; attachToRenderTree(BuildOwner owner, [ RenderObjectToWidgetElement&lt;T&gt; element ]) &#123;</span><br><span class="line">  <span class="keyword">if</span> (element == <span class="keyword">null</span>) &#123;</span><br><span class="line">    owner.lockState(() &#123;</span><br><span class="line">      <span class="comment">// createElement() =&gt; RenderObjectToWidgetElement&lt;T&gt;(this); -&gt; RootRenderObjectElement -&gt; RenderObjectElement</span></span><br><span class="line">      element = createElement();</span><br><span class="line">      <span class="keyword">assert</span>(element != <span class="keyword">null</span>);</span><br><span class="line">      element.assignOwner(owner);</span><br><span class="line">    &#125;);</span><br><span class="line">    owner.buildScope(element, () &#123;</span><br><span class="line">      element.mount(<span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// This is most likely the first time the framework is ready to produce</span></span><br><span class="line">    <span class="comment">// a frame. Ensure that we are asked for one.</span></span><br><span class="line">    SchedulerBinding.instance.ensureVisualUpdate();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    element._newWidget = <span class="keyword">this</span>;</span><br><span class="line">    element.markNeedsBuild();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> element;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这里我们可以看到上篇讲到的Element的流程，在<code>attachToRenderTree</code>中通过<code>createElement</code>创建出了Element Tree的根节点，并且将<code>BuildOwner</code>赋值给根节点，此<code>BuildOwner</code>将层层传递下去。</p>
+<p>之后调用<code>BuildOwner.buildScope</code>方法，并传入执行根节点<code>mount</code>方法的回调，执行根节点的<code>mount</code></p>
+<p>最后调用<code>scheduleWarmUpFrame</code>去渲染第一帧。</p>
+<h2 id="小节"><a href="#小节" class="headerlink" title="小节"></a>小节</h2><p>通过对<code>runApp</code>的分析，前面Element的逻辑就更加通畅了，基本了解了从根节点开始的渲染流程。</p>
 
       
 
@@ -192,11 +188,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">flutter</a>
         		</li>
       		
 		</ul>
@@ -215,18 +207,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/08/12/vue3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Vue源码学习笔记（三）数据驱动
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/07/16/vue2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Vue源码学习笔记（二）new Vue</div>
+    <a href="/2020/06/29/flutter-buildowner/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">flutter之buildowner</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -265,7 +248,7 @@
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "https://xzylzz.github.io/2018/07/22/mpvue-issue/",
+  id: "https://xzylzz.github.io/2020/06/30/flutter-runApp/",
   owner: 'xzylzz',
   repo: 'xzylzz.github.io',
   oauth: {

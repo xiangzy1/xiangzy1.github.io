@@ -6,20 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xzylzz.github.io">
-  <title>mpvue踩坑 | 我</title>
+  <title>Archives | 我</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近公司准备新做一个小程序，准备尝试一下最近比较火的小程序框架mpvue  之前一家公司做项目的时候，也写了差不多一年的vue 上来就是一顿初始化项目、安装依赖、引入Vuex、启动项目，一切都是那么完美 组件当然是要用的，但是比起浏览器的vue，能力还是要缺少很多，不过也还是能用，slot居然不好使倒是让人蛮难受，不过又写会熟悉的vue感觉还是不错">
-<meta name="keywords" content="前端,小程序">
-<meta property="og:type" content="article">
-<meta property="og:title" content="mpvue踩坑">
-<meta property="og:url" content="https://xzylzz.github.io/2018/07/22/mpvue-issue/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="我">
+<meta property="og:url" content="https://xzylzz.github.io/archives/page/4/index.html">
 <meta property="og:site_name" content="我">
-<meta property="og:description" content="最近公司准备新做一个小程序，准备尝试一下最近比较火的小程序框架mpvue  之前一家公司做项目的时候，也写了差不多一年的vue 上来就是一顿初始化项目、安装依赖、引入Vuex、启动项目，一切都是那么完美 组件当然是要用的，但是比起浏览器的vue，能力还是要缺少很多，不过也还是能用，slot居然不好使倒是让人蛮难受，不过又写会熟悉的vue感觉还是不错">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-21T02:17:16.942Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mpvue踩坑">
-<meta name="twitter:description" content="最近公司准备新做一个小程序，准备尝试一下最近比较火的小程序框架mpvue  之前一家公司做项目的时候，也写了差不多一年的vue 上来就是一顿初始化项目、安装依赖、引入Vuex、启动项目，一切都是那么完美 组件当然是要用的，但是比起浏览器的vue，能力还是要缺少很多，不过也还是能用，slot居然不好使倒是让人蛮难受，不过又写会熟悉的vue感觉还是不错">
+<meta name="twitter:title" content="我">
   
   
     <link rel="icon" href="/favicon.png">
@@ -133,148 +128,67 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-mpvue-issue" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      mpvue踩坑
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/02/28/搭建Hexo博客/" class="archive-article-date">
+  	<time datetime="2018-02-28T05:06:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-28</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/02/28/搭建Hexo博客/">搭建Hexo博客</a>
     </h1>
   
 
-        
-        <a href="/2018/07/22/mpvue-issue/" class="archive-article-date">
-  	<time datetime="2018-07-22T03:12:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>最近公司准备新做一个小程序，准备尝试一下最近比较火的小程序框架<code>mpvue</code></p>
-</blockquote>
-<p>之前一家公司做项目的时候，也写了差不多一年的<code>vue</code></p>
-<p>上来就是一顿初始化项目、安装依赖、引入<code>Vuex</code>、启动项目，一切都是那么完美</p>
-<p>组件当然是要用的，但是比起浏览器的<code>vue</code>，能力还是要缺少很多，不过也还是能用，<code>slot</code>居然不好使倒是让人蛮难受，不过又写会熟悉的<code>vue</code>感觉还是不错<br><a id="more"></a></p>
-<h2 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h2><p>仅仅过了一天后，有一位同事要加入到这个项目的开发，于是克隆项目到本地，安装，启动…</p>
-<p><code>dist</code>目录里居然没有编译出来<code>app.json</code>等一系列根目录的文件导致项目跑步起来，但是<code>webpack</code>编译居然还特么的成功…</p>
-<p>总之来来回回的都不能行，觉得应该是有些依赖更新了，造成了这么个<code>bug</code></p>
-<p>后来发现，在新下载的模板中有一个新的<code>main.json</code>文件来编译到小程序<code>app.json</code>文件(这仅仅过了一天怎么就？？？)</p>
-<p><code>mpvue-loader</code>的版本也更新了，想想这应该就是在我老项目上运行异常的原因吧？</p>
-<p>之前对依赖包的版本没多大关注，这次踩了这么一个坑，赶紧看看版本的问题喽</p>
-<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><p>在我们项目中的<code>package.json</code>文件是记录着我们整个项目需要使用到的各种依赖，通常记录的版本号之前都有一个<code>^</code>符号，比如我们的版本是<code>1.2.3</code>下载版本的范围就在<code>1.2.3-2.0.0</code>之间，去找最新的依赖，没想到这次新版本的依赖居然出现了问题</p>
-<p>其实我们在开发的时候是不希望每次重新安装的时候都去更新依赖，因为确实有些新版本反而会带来意想不到的<code>bug</code>，导致本来完成的工作又得增加一部分；在多人协作的时候，也没有办法保证环境的完全一致从而造成代码之间的差异。</p>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>1.固定版本号，去除<code>^</code>等范围符号</p>
-<p>2.<code>package-lock.json</code> 在<code>npm install</code>的时候生成的一份文件，记录当前状态实际安装的各个<code>package</code>的来源和版本号</p>
-<p>但是在不同的<code>npm</code>版本下，规则并不一样…</p>
-<p><code>npm 5.0.x</code>：不管<code>package.json</code>怎么变，<code>npm i</code>都会根据<code>lock</code>文件下载</p>
-<p><code>5.1.0</code>之后，无视<code>lock</code>，去下载最新的<code>npm</code></p>
-<p><code>5.4.2</code>之后，如果改了<code>package.json</code>，且和<code>lock</code>文件不同，执行<code>npm i</code>的时候会根据<code>package</code>中的版本号和语义去下载新的包，并更新至<code>lock</code></p>
-<p>…</p>
-<p>3.<code>yarn</code>会创建<code>yarn.lock</code>文件，可以创建完全相同的环境</p>
-<h3 id="继续踩坑"><a href="#继续踩坑" class="headerlink" title="继续踩坑"></a>继续踩坑</h3><p>更新到最新的<code>mpvue</code>项目之后，发现之前在模板写的相对路径的图片现在都不能访问到了，必须要改成绝对路径。有些改成了绝对路径的图片也找不到，看了下在编译的过程中并没有把文件夹下的图片复制到<code>dist</code>，心好累…</p>
-<hr>
-<h3 id="2018年09月21日更新"><a href="#2018年09月21日更新" class="headerlink" title="2018年09月21日更新"></a>2018年09月21日更新</h3><p>mpvue会频繁的<code>setData</code>，导致性能较差，并且会使<code>scroll-view</code>的<code>scroll-top</code>和<code>scroll-into-view</code>属性产生bug，会连续设置导致无法滚动</p>
-<p>目前更改为<code>fix-mpvue</code>包解决了此问题</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">2018</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/08/12/vue3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Vue源码学习笔记（三）数据驱动
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/07/16/vue2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Vue源码学习笔记（二）new Vue</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
-  <div id="gitment-ctn"></div> 
-<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
-<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
-<script>
-var gitment = new Gitment({
-  id: "https://xzylzz.github.io/2018/07/22/mpvue-issue/",
-  owner: 'xzylzz',
-  repo: 'xzylzz.github.io',
-  oauth: {
-    client_id: '301b311ace1382fcdf89',
-    client_secret: '138f28be7554cccff2a58f9f2ff38dbef2b871a4',
-  },
-})
-gitment.render('gitment-ctn')
-</script>
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/page/3/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span>
+    </nav>
   
 
 
@@ -299,8 +213,8 @@ gitment.render('gitment-ctn')
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
