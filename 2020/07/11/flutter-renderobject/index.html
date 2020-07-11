@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xzylzz.github.io">
-  <title>Archives | 我</title>
+  <title>flutter之RenderObject | 我</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="我">
-<meta property="og:url" content="https://xzylzz.github.io/archives/page/4/index.html">
+  <meta name="description" content="RenderObject如其名字一样，是用来渲染的对象，我们能在屏幕上看到画面，都是通过RenderObject“画”上去的。通过之前的文章我们知道了Widget、Element、RenderObject之间的关系。 RenderObject在Flutter开发的中后期经常用到，如果想知道一个Widget的实现逻辑，只需要找到Widget的RenderObject实现即可，Flutter中自定义控">
+<meta name="keywords" content="flutter">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flutter之RenderObject">
+<meta property="og:url" content="https://xzylzz.github.io/2020/07/11/flutter-renderobject/index.html">
 <meta property="og:site_name" content="我">
+<meta property="og:description" content="RenderObject如其名字一样，是用来渲染的对象，我们能在屏幕上看到画面，都是通过RenderObject“画”上去的。通过之前的文章我们知道了Widget、Element、RenderObject之间的关系。 RenderObject在Flutter开发的中后期经常用到，如果想知道一个Widget的实现逻辑，只需要找到Widget的RenderObject实现即可，Flutter中自定义控">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-07-11T03:18:15.062Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我">
+<meta name="twitter:title" content="flutter之RenderObject">
+<meta name="twitter:description" content="RenderObject如其名字一样，是用来渲染的对象，我们能在屏幕上看到画面，都是通过RenderObject“画”上去的。通过之前的文章我们知道了Widget、Element、RenderObject之间的关系。 RenderObject在Flutter开发的中后期经常用到，如果想知道一个Widget的实现逻辑，只需要找到Widget的RenderObject实现即可，Flutter中自定义控">
   
   
     <link rel="icon" href="/favicon.png">
@@ -128,113 +133,135 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-flutter-renderobject" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/02/js逗号操作符/" class="archive-article-date">
-  	<time datetime="2018-03-02T09:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-02</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/02/js逗号操作符/">js逗号操作符</a>
+    <h1 class="article-title" itemprop="name">
+      flutter之RenderObject
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/07/11/flutter-renderobject/" class="archive-article-date">
+  	<time datetime="2020-07-11T00:40:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>RenderObject如其名字一样，是用来渲染的对象，我们能在屏幕上看到画面，都是通过RenderObject“画”上去的。<br>通过之前的文章我们知道了Widget、Element、RenderObject之间的关系。</p>
+<p>RenderObject在Flutter开发的中后期经常用到，如果想知道一个Widget的实现逻辑，只需要找到Widget的RenderObject实现即可，Flutter中自定义控件实现也绕不过RenderObject。</p>
+<p>在Flutter中，最终页面的Layout、Paint等都发生在Widget对应的RenderObject子类中，而RenderObject也是Flutter跨平台最大的特点之一：<strong>所有的控件都和平台无关，Flutter只要求系统提供“Canvas”，开发者通过Widget生成的RenderObject“直接”通过引擎绘制到屏幕上</strong></p>
+<a id="more"></a>
+<h2 id="RenderObject分类"><a href="#RenderObject分类" class="headerlink" title="RenderObject分类"></a>RenderObject分类</h2><p>在Flutter中一般不会直接使用RenderObject，因为RenderObject本身只实现了基础的layout和paint等相关功能，而绘制到屏幕上还需要坐标体系和布局协议。所以大部分时候Widget的RenderObject会是其子类<code>RenderBox</code>或者<code>RenderSliver</code></p>
+<p>从RenderObject层分类，Widget可以分为<code>RenderBox</code>和<code>RenderSliver</code>。Flutter中大部分控件对象都是继承<code>RenderBox</code>实现的，可滑动区域的child使用<code>RenderSliver</code>实现。</p>
+<h3 id="RenderBox"><a href="#RenderBox" class="headerlink" title="RenderBox"></a>RenderBox</h3><p>RenderBox继承自RenderObject，在其基础上实现了笛卡尔坐标系和布局协议。笛卡尔坐标系与Android和iOS等原生坐标系一致，都是以屏幕的left、top为原点，按照宽高分x、y轴，而布局协议一般由子类自定义决定。例如控件被绘制在x=10，y=20的位置，然后大小由parent对它进行约束显示。</p>
+<p>对RenderBox抽象类一般会比较关注这几种方法：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">@override</span></span><br><span class="line"><span class="keyword">void</span> setupParentData(covariant RenderObject child) &#123;</span><br><span class="line">  <span class="keyword">if</span> (child.parentData <span class="keyword">is</span>! BoxParentData)</span><br><span class="line">    child.parentData = BoxParentData();</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BoxParentData</span> <span class="keyword">extends</span> <span class="title">ParentData</span> </span>&#123;</span><br><span class="line">  <span class="comment">/// The offset at which to paint the child in the parent's coordinate system.</span></span><br><span class="line">  Offset offset = Offset.zero;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="built_in">String</span> toString() =&gt; <span class="string">'offset=$offset'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>setupParentData将ParentData转化为BoxParentData，在Flutter中ParentData主要存放父节点中所需要的子节点信息，每个RenderObject中都有ParentData变量，而且只能通过setupParentData赋值。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@protected</span></span><br><span class="line"><span class="built_in">double</span> computeMinIntrinsicWidth(<span class="built_in">double</span> height) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0.0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@protected</span></span><br><span class="line"><span class="built_in">double</span> computeMaxIntrinsicWidth(<span class="built_in">double</span> height) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0.0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@protected</span></span><br><span class="line"><span class="built_in">double</span> computeMinIntrinsicHeight(<span class="built_in">double</span> width) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0.0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@protected</span></span><br><span class="line"><span class="built_in">double</span> computeMaxIntrinsicHeight(<span class="built_in">double</span> width) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0.0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面四个方法用来计算控件的最大、最小宽高，默认情况下都返回0，实际逻辑由RenderBox子类决定。<br>一般不会直接调用，而是用<code>get***Intrinisc***</code>方法间接获取，因为<code>getMinIntrinsicWidth</code>等内部方法内部会对计算结果进行缓存处理再返回。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@protected</span></span><br><span class="line"><span class="built_in">double</span> computeDistanceToActualBaseline(TextBaseline baseline) &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用于计算基线，通过baseline的传递计算控件实现在y轴内的偏移，一般也不会被直接调用，而是通过<code>getDistanceToBaseline</code>方法，因为这个方法会对计算结果进行缓存后返回。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@override</span></span><br><span class="line"><span class="keyword">void</span> performLayout() &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行布局逻辑，由子类自定义实现。<br>通常<code>performLayout</code>一般会利用parent的Constraints计算自身的大小，并调用child的布局方法，调整child位置，最终输出一个Size取得宽高。所以在一般情况下RenderBox的performLayout流程是向下输入Constraints，然后向上返回Size。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">RenderObject</span> <span class="keyword">extends</span> <span class="title">AbstractNode</span> <span class="title">with</span> <span class="title">DiagnosticableTreeMixin</span> <span class="keyword">implements</span> <span class="title">HitTestTarget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">void</span> paint(PaintingContext context, Offset offset) &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所有的RenderObject子类都必须实现<code>paint</code>方法才会实现界面显示，并且该方法不是给用户直接调用的，需要更新绘制时，必须通过<code>markNeedsPaint</code>方法触发界面执行paint绘制。<code>markNeedsPaint</code>会通过<code>requestVisualUpdate</code>方法触发引擎更新绘制界面，最终通过<code>RendererBinding</code>的<code>drawFrame</code>开始执行RenderObject的<code>paint</code>方法。</p>
+<p>在经历大小和布局位置计算之后，最终<code>paint</code>方法会被调用。</p>
+<p>PaintingContext: A place to paint,在父类ClipContext包含canvas对象用于绘制<br>Offset在paint方法中提供当前控件相对于屏幕的偏移值，提供绘制时确定的坐标。</p>
+<h3 id="RenderSliver"><a href="#RenderSliver" class="headerlink" title="RenderSliver"></a>RenderSliver</h3><p>RenderSliver和RenderBox有很大的不同，RenderSliver输入的约束是<code>SliverConstraints</code>，输出的大小是<code>SliverGeometry</code>。这是因为<code>RenderSliver</code>主要是在<code>RenderViewport</code>中使用的。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> SliverConstraints(&#123;</span><br><span class="line">  <span class="comment">// scrollOffset 和 remainingPaintExtent增加的方向，比如上下左右</span></span><br><span class="line">  <span class="meta">@required</span> <span class="keyword">this</span>.axisDirection,</span><br><span class="line">  <span class="comment">// 在axisDirection的前提下，内容是正向增长还是反向增长</span></span><br><span class="line">  <span class="meta">@required</span> <span class="keyword">this</span>.growthDirection,</span><br><span class="line">  <span class="comment">// 用户滑动的方向。正向、反向、停止</span></span><br><span class="line">  <span class="meta">@required</span> <span class="keyword">this</span>.userScrollDirection,</span><br><span class="line">  <span class="comment">// 在当前坐标系中滑动偏移量</span></span><br><span class="line">  <span class="meta">@required</span> <span class="keyword">this</span>.scrollOffset,</span><br><span class="line">  <span class="comment">// 在这个sliver之前已有的滑动距离，等于前面sliver的scrollExtent累加</span></span><br><span class="line">  <span class="meta">@required</span> <span class="keyword">this</span>.precedingScrollExtent,</span><br><span class="line">  <span class="comment">// layoutExtent和paintExtent重叠区域大小</span></span><br><span class="line">  <span class="meta">@required</span> <span class="keyword">this</span>.overlap,</span><br><span class="line">  <span class="comment">// 剩余的可绘制范围</span></span><br><span class="line">  <span class="meta">@required</span> <span class="keyword">this</span>.remainingPaintExtent,</span><br><span class="line">  <span class="comment">// 容器副轴大小</span></span><br><span class="line">  <span class="meta">@required</span> <span class="keyword">this</span>.crossAxisExtent,</span><br><span class="line">  <span class="comment">// 容器副轴方向</span></span><br><span class="line">  <span class="meta">@required</span> <span class="keyword">this</span>.crossAxisDirection,</span><br><span class="line">  <span class="comment">// 容器主轴大小</span></span><br><span class="line">  <span class="meta">@required</span> <span class="keyword">this</span>.viewportMainAxisExtent,</span><br><span class="line">  <span class="comment">// 容器还剩余额缓存大小</span></span><br><span class="line">  <span class="meta">@required</span> <span class="keyword">this</span>.remainingCacheExtent,</span><br><span class="line">  <span class="comment">// 容器开始缓存的位置</span></span><br><span class="line">  <span class="meta">@required</span> <span class="keyword">this</span>.cacheOrigin,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><code>SliverConstraints</code>比<code>BoxConstraints</code>参数复杂很多，<code>BoxConstrains</code>只有最大、最小宽高，而<code>SliverConstraints</code>有滑动方向、滑动偏移、滑动容器大小等相关参数</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> SliverGeometry(&#123;</span><br><span class="line">  <span class="comment">// 可以滑动的范围</span></span><br><span class="line">  <span class="keyword">this</span>.scrollExtent = <span class="number">0.0</span>,</span><br><span class="line">  <span class="comment">// 可以绘制的大小范围</span></span><br><span class="line">  <span class="keyword">this</span>.paintExtent = <span class="number">0.0</span>,</span><br><span class="line">  <span class="comment">// 绘制的起点</span></span><br><span class="line">  <span class="keyword">this</span>.paintOrigin = <span class="number">0.0</span>,</span><br><span class="line">  <span class="comment">// 布局的大小范围</span></span><br><span class="line">  <span class="built_in">double</span> layoutExtent,</span><br><span class="line">  <span class="comment">// 最大的绘制范围</span></span><br><span class="line">  <span class="keyword">this</span>.maxPaintExtent = <span class="number">0.0</span>,</span><br><span class="line">  <span class="comment">// sliver固定后，可以减少的滑动区域范围</span></span><br><span class="line">  <span class="keyword">this</span>.maxScrollObstructionExtent = <span class="number">0.0</span>,</span><br><span class="line">  <span class="comment">// 触摸事件的命中范围</span></span><br><span class="line">  <span class="built_in">double</span> hitTestExtent,</span><br><span class="line">  <span class="comment">// 是否可见（sliver是否被绘制）</span></span><br><span class="line">  <span class="built_in">bool</span> visible,</span><br><span class="line">  <span class="comment">// 是否有视觉溢出</span></span><br><span class="line">  <span class="keyword">this</span>.hasVisualOverflow = <span class="keyword">false</span>,</span><br><span class="line">  <span class="comment">// 滑动偏移的修正值，如果不为0会触发重新布局</span></span><br><span class="line">  <span class="keyword">this</span>.scrollOffsetCorrection,</span><br><span class="line">  <span class="comment">// 缓存范围</span></span><br><span class="line">  <span class="built_in">double</span> cacheExtent,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>相比于Size，SliverGeometry参数同样复杂很多，有滑动范围、绘制范围、偏移量等相关参数。</p>
+<p>通过对比可以发现RenderSliver比RenderBox要复杂很多，RenderSliver更关注滑动、方向、缓存等关键点，这是因为sliver需要用于Viewport可滑动区域内的展示。一般在开发中使用的 ListView、GridView、CustomScrollView等都由sliver与 Viewport 组成，在可滑动区域内不允许直接使用RenderBox，只能使用RenderSliver嵌套后进行布局。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">2018</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">flutter</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/02/28/搭建Hexo博客/" class="archive-article-date">
-  	<time datetime="2018-02-28T05:06:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-28</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/06/30/flutter-runApp/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">flutter-runApp</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/28/搭建Hexo博客/">搭建Hexo博客</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">2018</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/3/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span>
-    </nav>
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "https://xzylzz.github.io/2020/07/11/flutter-renderobject/",
+  owner: 'xzylzz',
+  repo: 'xzylzz.github.io',
+  oauth: {
+    client_id: '301b311ace1382fcdf89',
+    client_secret: '138f28be7554cccff2a58f9f2ff38dbef2b871a4',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
 
@@ -259,8 +286,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
