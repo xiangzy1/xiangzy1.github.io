@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="我">
 <meta property="og:description" content="前面讲了很多理论知识，现在我们可以开始实战，去自定义一个自己的Widget。 自定义Widget布局肯定需要三个部分：Widget、Element和RenderObject，而核心在于自定义RenderObject。对于单child来说我们可以继承SingleChildRenderObjectWidget实现，多child Widget一般通过继承MultiChildRenderObjectWid">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-07-20T07:26:08.891Z">
+<meta property="og:updated_time" content="2020-07-20T07:30:18.851Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自定义Widget">
 <meta name="twitter:description" content="前面讲了很多理论知识，现在我们可以开始实战，去自定义一个自己的Widget。 自定义Widget布局肯定需要三个部分：Widget、Element和RenderObject，而核心在于自定义RenderObject。对于单child来说我们可以继承SingleChildRenderObjectWidget实现，多child Widget一般通过继承MultiChildRenderObjectWid">
@@ -155,6 +155,7 @@
       
         <p>前面讲了很多理论知识，现在我们可以开始实战，去自定义一个自己的Widget。</p>
 <p>自定义Widget布局肯定需要三个部分：Widget、Element和RenderObject，而核心在于自定义RenderObject。对于单child来说我们可以继承<code>SingleChildRenderObjectWidget</code>实现，多child Widget一般通过继承<code>MultiChildRenderObjectWidget</code>和<code>RenderBox</code>实现，而<code>MultiChildRenderObjectElement</code>默认不需要自定义，它会负责将<code>MultiChildRenderObjectWidget</code>和<code>RenderBox</code>进行关联。</p>
+<a id="more"></a>
 <h2 id="单child-Widget自定义"><a href="#单child-Widget自定义" class="headerlink" title="单child Widget自定义"></a>单child Widget自定义</h2><p>在flutter提供的组件中，常见的 SingleChildRenderObjectWidget 有 Clip、Opacity、Padding、Align等。</p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MySingleChildWidget</span> <span class="keyword">extends</span> <span class="title">SingleChildRenderObjectWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> Widget child;</span><br><span class="line">  MySingleChildWidget(&#123;<span class="keyword">this</span>.child&#125;): <span class="keyword">super</span>(child: child);</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  RenderObject createRenderObject(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> RenderMySingleChildWidget();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>自定义单child Widget时，需要继承SingleChildRenderObjectWidget并实现createRenderObject方法，SingleChildRenderObjectWidget实现了默认的 createElement方法，所以一般情况下不需要我们自定义。</p>
