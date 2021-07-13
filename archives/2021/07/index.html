@@ -6,20 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xiangzy1.github.io">
-  <title>Vue源码学习笔记（七）检测数据变化 | 我</title>
+  <title>Archives: 2021/7 | 我</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="检测变化在使用Vue的过程中，有时候发现，修改了data中的属性，页面却没有发生变化。 哪些数据变化不能被检测？如何解决？ 直接修改数组项，给被观测的对象添加一个新的key的时候，由于对象属性上没有添加setter、getter，不会触发更新 可以使用Vue.set(obj, newKey, value)或Vue.set(array, index, value来触发更新">
-<meta name="keywords" content="vue">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Vue源码学习笔记（七）检测数据变化">
-<meta property="og:url" content="https://xiangzy1.github.io/2018/10/15/vue7/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="我">
+<meta property="og:url" content="https://xiangzy1.github.io/archives/2021/07/index.html">
 <meta property="og:site_name" content="我">
-<meta property="og:description" content="检测变化在使用Vue的过程中，有时候发现，修改了data中的属性，页面却没有发生变化。 哪些数据变化不能被检测？如何解决？ 直接修改数组项，给被观测的对象添加一个新的key的时候，由于对象属性上没有添加setter、getter，不会触发更新 可以使用Vue.set(obj, newKey, value)或Vue.set(array, index, value来触发更新">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-16T07:59:25.366Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vue源码学习笔记（七）检测数据变化">
-<meta name="twitter:description" content="检测变化在使用Vue的过程中，有时候发现，修改了data中的属性，页面却没有发生变化。 哪些数据变化不能被检测？如何解决？ 直接修改数组项，给被观测的对象添加一个新的key的时候，由于对象属性上没有添加setter、getter，不会触发更新 可以使用Vue.set(obj, newKey, value)或Vue.set(array, index, value来触发更新">
+<meta name="twitter:title" content="我">
   
   
     <link rel="icon" href="/favicon.png">
@@ -133,130 +128,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-vue7" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Vue源码学习笔记（七）检测数据变化
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/07/13/实现Vue3响应式（一）/" class="archive-article-date">
+  	<time datetime="2021-07-13T12:36:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-13</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/07/13/实现Vue3响应式（一）/">实现Vue3响应式（一）</a>
     </h1>
   
 
-        
-        <a href="/2018/10/15/vue7/" class="archive-article-date">
-  	<time datetime="2018-10-15T07:54:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="检测变化"><a href="#检测变化" class="headerlink" title="检测变化"></a>检测变化</h2><p>在使用Vue的过程中，有时候发现，修改了data中的属性，页面却没有发生变化。</p>
-<p>哪些数据变化不能被检测？如何解决？</p>
-<p>直接修改数组项，给被观测的对象添加一个新的<code>key</code>的时候，由于对象属性上没有添加setter、getter，不会触发更新</p>
-<p>可以使用<code>Vue.set(obj, newKey, value)</code>或<code>Vue.set(array, index, value</code>来触发更新</p>
-<a id="more"></a>
-<h3 id="Vue-set"><a href="#Vue-set" class="headerlink" title="Vue.set"></a>Vue.set</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/core/global-api/index</span></span><br><span class="line"><span class="keyword">import</span> &#123; set, del &#125; <span class="keyword">from</span> <span class="string">'../observer/index'</span></span><br><span class="line">Vue.set = set</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/core/observer/index.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">set</span> (<span class="params">target: Array&lt;any&gt; | Object, key: any, val: any</span>): <span class="title">any</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 参数检测</span></span><br><span class="line">  <span class="keyword">if</span> (process.env.NODE_ENV !== <span class="string">'production'</span> &amp;&amp;</span><br><span class="line">    (isUndef(target) || isPrimitive(target))</span><br><span class="line">  ) &#123;</span><br><span class="line">    warn(<span class="string">`Cannot set reactive property on undefined, null, or primitive value: <span class="subst">$&#123;(target: any)&#125;</span>`</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 数组</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(target) &amp;&amp; isValidArrayIndex(key)) &#123;</span><br><span class="line">    target.length = <span class="built_in">Math</span>.max(target.length, key)</span><br><span class="line">    target.splice(key, <span class="number">1</span>, val)</span><br><span class="line">    <span class="keyword">return</span> val</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 对象，已存在直接赋值</span></span><br><span class="line">  <span class="keyword">if</span> (key <span class="keyword">in</span> target &amp;&amp; !(key <span class="keyword">in</span> <span class="built_in">Object</span>.prototype)) &#123;</span><br><span class="line">    target[key] = val</span><br><span class="line">    <span class="keyword">return</span> val</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 否则拿到ob属性</span></span><br><span class="line">  <span class="keyword">const</span> ob = (target: any).__ob__</span><br><span class="line">  <span class="keyword">if</span> (target._isVue || (ob &amp;&amp; ob.vmCount)) &#123;</span><br><span class="line">    process.env.NODE_ENV !== <span class="string">'production'</span> &amp;&amp; warn(</span><br><span class="line">      <span class="string">'Avoid adding reactive properties to a Vue instance or its root $data '</span> +</span><br><span class="line">      <span class="string">'at runtime - declare it upfront in the data option.'</span></span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">return</span> val</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!ob) &#123;</span><br><span class="line">    target[key] = val</span><br><span class="line">    <span class="keyword">return</span> val</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 把传入的对象也变成响应式</span></span><br><span class="line">  defineReactive(ob.value, key, val)</span><br><span class="line">  <span class="comment">// 触发通知</span></span><br><span class="line">  ob.dep.notify()</span><br><span class="line">  <span class="keyword">return</span> val</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>为什么对于数组的处理，调用<code>splice</code>方法，就可以触发到数组项的更新？<br>是因为在创建响应式对象的时候，Vue对数组原型做了一些处理，重写了部分原型上的方法</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/core/observer/index.js</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Observer</span> </span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span> (value: any) &#123;</span><br><span class="line">    <span class="keyword">this</span>.value = value</span><br><span class="line">    <span class="keyword">this</span>.dep = <span class="keyword">new</span> Dep()</span><br><span class="line">    <span class="keyword">this</span>.vmCount = <span class="number">0</span></span><br><span class="line">    def(value, <span class="string">'__ob__'</span>, <span class="keyword">this</span>)</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(value)) &#123;</span><br><span class="line">      <span class="keyword">const</span> augment = hasProto</span><br><span class="line">        ? protoAugment</span><br><span class="line">        : copyAugment</span><br><span class="line">      augment(value, arrayMethods, arrayKeys)</span><br><span class="line">      <span class="keyword">this</span>.observeArray(value)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.walk(value)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 支持原型属性，将数组的__proto__属性改为自定义的arrayMethods</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">protoAugment</span> (<span class="params">target, src: Object, keys: any</span>) </span>&#123;</span><br><span class="line">  <span class="comment">/* eslint-disable no-proto */</span></span><br><span class="line">  target.__proto__ = src</span><br><span class="line">  <span class="comment">/* eslint-enable no-proto */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/core/observer/array.js</span></span><br><span class="line"><span class="comment">// 重写了修改可以修改数组的方法，并且在调用之后在调用ob.dep.notify()来触发更新</span></span><br></pre></td></tr></table></figure>
-<p><code>Vue.set</code> 本质上都是手动调用 <code>notify</code> 来触发更新</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Vue</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/10/16/vue8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Vue源码学习笔记（八）计算属性
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/09/27/vue6/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Vue源码学习笔记（六）nextTick</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
-  <div id="gitment-ctn"></div> 
-<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
-<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
-<script>
-var gitment = new Gitment({
-  id: "https://xiangzy1.github.io/2018/10/15/vue7/",
-  owner: 'xiangzy1',
-  repo: 'xiangzy1.github.io',
-  oauth: {
-    client_id: '301b311ace1382fcdf89',
-    client_secret: '138f28be7554cccff2a58f9f2ff38dbef2b871a4',
-  },
-})
-gitment.render('gitment-ctn')
-</script>
-  
+    
 
 
           </div>
@@ -280,8 +205,8 @@ gitment.render('gitment-ctn')
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
